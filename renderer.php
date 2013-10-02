@@ -9,7 +9,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in version.php.
  * @copyright  &copy; 2012-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -33,9 +33,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . '/course/format/renderer.php');
-require_once($CFG->dirroot . '/course/format/topcoll/lib.php');
+require_once($CFG->dirroot . '/course/format/moonstone/lib.php');
 
-class format_topcoll_renderer extends format_section_renderer_base {
+class format_moonstone_renderer extends format_section_renderer_base {
 
     private $tccolumnwidth = 100; /* Default width in percent of the column(s). */
     private $tccolumnpadding = 0; /* Defailt padding in pixels of the column(s). */
@@ -89,7 +89,7 @@ class format_topcoll_renderer extends format_section_renderer_base {
      * @return string the page title
      */
     protected function page_title() {
-        return get_string('sectionname', 'format_topcoll');
+        return get_string('sectionname', 'format_moonstone');
     }
 
     /**
@@ -120,11 +120,11 @@ class format_topcoll_renderer extends format_section_renderer_base {
                         // Get the specific words from the language files.
                         $topictext = null;
                         if (($this->tcsettings['layoutstructure'] == 1) || ($this->tcsettings['layoutstructure'] == 4)) {
-                            $topictext = get_string('setlayoutstructuretopic', 'format_topcoll');
+                            $topictext = get_string('setlayoutstructuretopic', 'format_moonstone');
                         } else if (($this->tcsettings['layoutstructure'] == 2) || ($this->tcsettings['layoutstructure'] == 3)) {
-                            $topictext = get_string('setlayoutstructureweek', 'format_topcoll');
+                            $topictext = get_string('setlayoutstructureweek', 'format_moonstone');
                         } else {
-                            $topictext = get_string('setlayoutstructureday', 'format_topcoll');
+                            $topictext = get_string('setlayoutstructureday', 'format_moonstone');
                         }
 
                         $o .= html_writer::tag('span', $topictext . html_writer::empty_tag('br') . $section->section, array('class' => 'cps_centre'));
@@ -200,11 +200,11 @@ class format_topcoll_renderer extends format_section_renderer_base {
             if ($course->marker == $section->section) {  // Show the "light globe" on/off.
                 $url->param('marker', 0);
                 $controls[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $this->output->pix_url('i/marked'),
-                                    'class' => 'icon ', 'alt' => get_string('markedthissection', 'format_topcoll'))), array('title' => get_string('markedthissection', 'format_topcoll'), 'class' => 'editing_highlight'));
+                                    'class' => 'icon ', 'alt' => get_string('markedthissection', 'format_moonstone'))), array('title' => get_string('markedthissection', 'format_moonstone'), 'class' => 'editing_highlight'));
             } else {
                 $url->param('marker', $section->section);
                 $controls[] = html_writer::link($url, html_writer::empty_tag('img', array('src' => $this->output->pix_url('i/marker'),
-                                    'class' => 'icon', 'alt' => get_string('markthissection', 'format_topcoll'))), array('title' => get_string('markthissection', 'format_topcoll'), 'class' => 'editing_highlight'));
+                                    'class' => 'icon', 'alt' => get_string('markthissection', 'format_moonstone'))), array('title' => get_string('markthissection', 'format_moonstone'), 'class' => 'editing_highlight'));
             }
         }
 
@@ -352,7 +352,7 @@ class format_topcoll_renderer extends format_section_renderer_base {
                     case 2:
                     case 3:
                     case 4:
-                        $otitle .= ' - ' . get_string('topcolltoggle', 'format_topcoll'); // The word 'Toggle'.
+                        $otitle .= ' - ' . get_string('moonstonetoggle', 'format_moonstone'); // The word 'Toggle'.
                         break;
                 }
             }
@@ -609,7 +609,7 @@ class format_topcoll_renderer extends format_section_renderer_base {
                     $this->tcsettings['layoutcolumns'] = 4;
 
                     // Update....
-                    $this->courseformat->update_topcoll_columns_setting($this->tcsettings['layoutcolumns']);
+                    $this->courseformat->update_moonstone_columns_setting($this->tcsettings['layoutcolumns']);
                 }
 
                 if (($this->tablettheme === true) && ($this->tcsettings['layoutcolumns'] > 2)) {
@@ -625,7 +625,7 @@ class format_topcoll_renderer extends format_section_renderer_base {
                 $this->tcsettings['layoutcolumns'] = 1;
 
                 // Update....
-                $this->courseformat->update_topcoll_columns_setting($this->tcsettings['layoutcolumns']);
+                $this->courseformat->update_moonstone_columns_setting($this->tcsettings['layoutcolumns']);
             }
 
             echo $this->end_section_list();
@@ -815,8 +815,8 @@ class format_topcoll_renderer extends format_section_renderer_base {
         }
         $o .= html_writer::start_tag('div', array('class' => 'sectionbody'.$iconsetclass));
         $o .= html_writer::start_tag('h4', null);
-        $o .= html_writer::tag('a', get_string('topcollopened', 'format_topcoll'), array('class' => 'on', 'href' => '#', 'id' => 'toggles-all-opened'));
-        $o .= html_writer::tag('a', get_string('topcollclosed', 'format_topcoll'), array('class' => 'off', 'href' => '#', 'id' => 'toggles-all-closed'));
+        $o .= html_writer::tag('a', get_string('moonstoneopened', 'format_moonstone'), array('class' => 'on', 'href' => '#', 'id' => 'toggles-all-opened'));
+        $o .= html_writer::tag('a', get_string('moonstoneclosed', 'format_moonstone'), array('class' => 'off', 'href' => '#', 'id' => 'toggles-all-closed'));
         $o .= html_writer::end_tag('h4');
         $o .= html_writer::end_tag('div');
         $o .= html_writer::end_tag('div');

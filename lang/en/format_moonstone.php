@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Collapsed Topics Information
+ * Moonstone Information
  *
  * A topic based format that solves the issue of the 'Scroll of Death' when a course has many topics. All topics
  * except zero have a toggle that displays that topic. One or more topics can be displayed at any given time.
@@ -9,7 +9,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in version.php.
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -31,26 +31,26 @@
  */
 // Used by the Moodle Core for identifing the format and displaying in the list of formats for a course in its settings.
 // Possibly legacy to be removed after Moodle 2.0 is stable.
-$string['nametopcoll'] = 'Collapsed Topics';
-$string['formattopcoll'] = 'Collapsed Topics';
+$string['namemoonstone'] = 'Moonstone';
+$string['formatmoonstone'] = 'Moonstone';
 
 // Used in format.php.
-$string['topcolltoggle'] = 'Toggle';
-$string['topcollsidewidth'] = '28px';
+$string['moonstonetoggle'] = 'Toggle';
+$string['moonstonesidewidth'] = '28px';
 
 // Toggle all - Moodle Tracker CONTRIB-3190.
-$string['topcollall'] = 'sections.';  // Leave as AMOS maintains only the latest translation - so previous versions are still supported.
-$string['topcollopened'] = 'Open all';
-$string['topcollclosed'] = 'Close all';
+$string['moonstoneall'] = 'sections.';  // Leave as AMOS maintains only the latest translation - so previous versions are still supported.
+$string['moonstoneopened'] = 'Open all';
+$string['moonstoneclosed'] = 'Close all';
 
 // Moodle 2.0 Enhancement - Moodle Tracker MDL-15252, MDL-21693 & MDL-22056 - http://docs.moodle.org/en/Development:Languages.
 $string['sectionname'] = 'Section';
-$string['pluginname'] = 'Collapsed Topics';
+$string['pluginname'] = 'Moonstone';
 $string['section0name'] = 'General';
 
 // MDL-26105.
-$string['page-course-view-topcoll'] = 'Any course main page in the collapsed topics format';
-$string['page-course-view-topcoll-x'] = 'Any course page in the collapsed topics format';
+$string['page-course-view-moonstone'] = 'Any course main page in the collapsed topics format';
+$string['page-course-view-moonstone-x'] = 'Any course page in the collapsed topics format';
 
 // Moodle 2.3 Enhancement.
 $string['hidefromothers'] = 'Hide section';
@@ -90,7 +90,7 @@ $string['setlayoutstructurelatweekfirst'] = 'Current Week First';
 $string['setlayoutstructurecurrenttopicfirst'] = 'Current Topic First';
 $string['setlayoutstructureday'] = 'Day';
 $string['resetlayout'] = 'Reset layout'; // CONTRIB-3529.
-$string['resetalllayout'] = 'Reset layouts for all Collapsed Topics courses';
+$string['resetalllayout'] = 'Reset layouts for all Moonstone courses';
 
 // Colour enhancement - Moodle Tracker CONTRIB-3529.
 $string['setcolour'] = 'Set colour';
@@ -99,7 +99,7 @@ $string['settoggleforegroundcolour'] = 'Toggle foreground';
 $string['settogglebackgroundcolour'] = 'Toggle background';
 $string['settogglebackgroundhovercolour'] = 'Toggle background hover';
 $string['resetcolour'] = 'Reset colour';
-$string['resetallcolour'] = 'Reset colours for all Collapsed Topics courses';
+$string['resetallcolour'] = 'Reset colours for all Moonstone courses';
 
 // Columns enhancement.
 $string['setlayoutcolumns'] = 'Set columns';
@@ -128,15 +128,15 @@ $string['setlayoutstructure_help'] = "The layout structure of the course.  You c
 
 'Day' - where each section is presented as a day in ascending day order from the start date of the course.";
 $string['setlayout_help'] = 'Contains the settings to do with the layout of the format within the course.';
-$string['resetlayout_help'] = 'Resets the layout to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
-$string['resetalllayout_help'] = 'Resets the layout to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetlayout_help'] = 'Resets the layout to the default values so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetalllayout_help'] = 'Resets the layout to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
 // Moodle Tracker CONTRIB-3529.
 $string['setcolour_help'] = 'Contains the settings to do with the colour of the format within the course.';
 $string['settoggleforegroundcolour_help'] = 'Sets the colour of the text on the toggle.';
 $string['settogglebackgroundcolour_help'] = 'Sets the background colour of the toggle.';
 $string['settogglebackgroundhovercolour_help'] = 'Sets the background colour of the toggle when the mouse moves over it.';
-$string['resetcolour_help'] = 'Resets the colours to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
-$string['resetallcolour_help'] = 'Resets the colours to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetcolour_help'] = 'Resets the colours to the default values so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetallcolour_help'] = 'Resets the colours to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
 // Columns enhancement.
 $string['setlayoutcolumns_help'] = 'How many columns to use.';
 $string['setlayoutcolumnorientation_help'] =
@@ -146,8 +146,8 @@ Horizontal - Sections go left to right.';
 
 // Moodle 2.4 Course format refactoring - MDL-35218.
 $string['numbersections'] = 'Number of sections';
-$string['ctreset'] = 'Collapsed Topics reset options';
-$string['ctreset_help'] = 'Reset to Collapsed Topics defaults.';
+$string['ctreset'] = 'Moonstone reset options';
+$string['ctreset_help'] = 'Reset to Moonstone defaults.';
 
 // Toggle alignment - CONTRIB-4098.
 $string['settogglealignment'] = 'Set the toggle text alignment';
@@ -156,9 +156,9 @@ $string['left'] = 'Left';
 $string['center'] = 'Centre';
 $string['right'] = 'Right';
 $string['resettogglealignment'] = 'Reset toggle alignment';
-$string['resetalltogglealignment'] = 'Reset toggle alignments for all Collapsed Topics courses';
-$string['resettogglealignment_help'] = 'Resets the toggle alignment to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
-$string['resetalltogglealignment_help'] = 'Resets the toggle alignment to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetalltogglealignment'] = 'Reset toggle alignments for all Moonstone courses';
+$string['resettogglealignment_help'] = 'Resets the toggle alignment to the default values so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetalltogglealignment_help'] = 'Resets the toggle alignment to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
 
 // Icon set enhancement.
 $string['settoggleiconset'] = 'Set icon set';
@@ -169,11 +169,11 @@ $string['arrow'] = 'Arrow';
 $string['point'] = 'Point';
 $string['power'] = 'Power';
 $string['resettoggleiconset'] = 'Reset the toggle icon set';
-$string['resetalltoggleiconset'] = 'Reset the toggle icon set for all Collapsed Topics courses';
-$string['resettoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
-$string['resetalltoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetalltoggleiconset'] = 'Reset the toggle icon set for all Moonstone courses';
+$string['resettoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetalltoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
 
-// Site Administration -> Plugins -> Course formats -> Collapsed Topics or Manage course formats - Settings.
+// Site Administration -> Plugins -> Course formats -> Moonstone or Manage course formats - Settings.
 $string['off'] = 'Off';
 $string['on'] = 'On';
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -245,8 +245,8 @@ $string['defaulttgbghvrcolour_desc'] = "Toggle background hover colour in hexide
 $string['defaulttogglepersistence'] = 'Toggle persistence';
 $string['defaulttogglepersistence_desc'] = "'On' or 'Off'.  You may wish to turn off for an AJAX performance increase but user toggle selections will not be recalled on page refresh or revisit.
 
-Note: If turning persistence off remove any rows containing 'topcoll_toggle_x' in the 'name' field
-      of the 'user_preferences' table in the database.  Where the 'x' in 'topcoll_toggle_x' will be
+Note: If turning persistence off remove any rows containing 'moonstone_toggle_x' in the 'name' field
+      of the 'user_preferences' table in the database.  Where the 'x' in 'moonstone_toggle_x' will be
       a course id.";
 
 $string['defaulttogglealignment'] = 'Default toggle text alignment';
@@ -267,7 +267,7 @@ $string['defaultuserpreference'] = 'What to do with the toggles when the user fi
 $string['defaultuserpreference_desc'] = 'States what to do with the toggles when the user first accesses the course.';
 
 // Capabilities.
-$string['topcoll:changelayout'] = 'Change or reset the layout';
-$string['topcoll:changecolour'] = 'Change or reset the colour';
-$string['topcoll:changetogglealignment'] = 'Change or reset the toggle alignment';
-$string['topcoll:changetoggleiconset'] = 'Change or reset the toggle icon set';
+$string['moonstone:changelayout'] = 'Change or reset the layout';
+$string['moonstone:changecolour'] = 'Change or reset the colour';
+$string['moonstone:changetogglealignment'] = 'Change or reset the toggle alignment';
+$string['moonstone:changetoggleiconset'] = 'Change or reset the toggle icon set';

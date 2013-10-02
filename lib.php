@@ -9,7 +9,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in version.php.
  * @copyright  &copy; 2012-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -32,7 +32,7 @@
  */
 require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 
-class format_topcoll extends format_base {
+class format_moonstone extends format_base {
 
     private $settings;
 
@@ -82,16 +82,16 @@ class format_topcoll extends format_base {
         if ((string) $thesection->name !== '') {
             $o .= format_string($thesection->name, true, array('context' => $coursecontext));
         } else if ($thesection->section == 0) {
-            $o = get_string('section0name', 'format_topcoll');
+            $o = get_string('section0name', 'format_moonstone');
         } else {
             if (($tcsettings['layoutstructure'] == 1) || ($tcsettings['layoutstructure'] == 4)) {
-                $o = get_string('sectionname', 'format_topcoll') . ' ' . $thesection->section;
+                $o = get_string('sectionname', 'format_moonstone') . ' ' . $thesection->section;
             } else {
                 $o = $this->get_section_dates($thesection, $course, $tcsettings);
             }
         }
 
-        /* 
+        /*
          * Now done here so that the drag and drop titles will be the correct strings as swapped in format.js.
          * But only if we are using toggles which will be if all sections are on one page or we are editing the main page
          * when in one section per page which is coded in 'renderer.php/print_multiple_section_page()' when it calls 'section_header()'
@@ -103,7 +103,7 @@ class format_topcoll extends format_base {
                 case 2:
                 case 3:
                 case 4:
-                    $o .= ' - ' . get_string('topcolltoggle', 'format_topcoll'); // The word 'Toggle'.
+                    $o .= ' - ' . get_string('moonstonetoggle', 'format_moonstone'); // The word 'Toggle'.
                     break;
             }
         }
@@ -115,12 +115,12 @@ class format_topcoll extends format_base {
         $dateformat = ' ' . get_string('strftimedateshort');
         $o = '';
         if ($tcsettings['layoutstructure'] == 5) {
-            $day = $this->format_topcoll_get_section_day($section, $course);
+            $day = $this->format_moonstone_get_section_day($section, $course);
 
             $weekday = userdate($day, $dateformat);
             $o = $weekday;
         } else {
-            $dates = $this->format_topcoll_get_section_dates($section, $course);
+            $dates = $this->format_moonstone_get_section_dates($section, $course);
 
             // We subtract 24 hours for display purposes.
             $dates->end = ($dates->end - 86400);
@@ -254,47 +254,47 @@ class format_topcoll extends format_base {
                     'type' => PARAM_INT,
                 ),
                 'coursedisplay' => array(
-                    'default' => get_config('format_topcoll', 'defaultcoursedisplay'),
+                    'default' => get_config('format_moonstone', 'defaultcoursedisplay'),
                     'type' => PARAM_INT,
                 ),
                 'layoutelement' => array(
-                    'default' => get_config('format_topcoll', 'defaultlayoutelement'),
+                    'default' => get_config('format_moonstone', 'defaultlayoutelement'),
                     'type' => PARAM_INT,
                 ),
                 'layoutstructure' => array(
-                    'default' => get_config('format_topcoll', 'defaultlayoutstructure'),
+                    'default' => get_config('format_moonstone', 'defaultlayoutstructure'),
                     'type' => PARAM_INT,
                 ),
                 'layoutcolumns' => array(
-                    'default' => get_config('format_topcoll', 'defaultlayoutcolumns'),
+                    'default' => get_config('format_moonstone', 'defaultlayoutcolumns'),
                     'type' => PARAM_INT,
                 ),
                 'layoutcolumnorientation' => array(
-                    'default' => get_config('format_topcoll', 'defaultlayoutcolumnorientation'),
+                    'default' => get_config('format_moonstone', 'defaultlayoutcolumnorientation'),
                     'type' => PARAM_INT,
                 ),
                 'togglealignment' => array(
-                    'default' => get_config('format_topcoll', 'defaulttogglealignment'),
+                    'default' => get_config('format_moonstone', 'defaulttogglealignment'),
                     'type' => PARAM_INT,
                 ),
                 'toggleiconset' => array(
-                    'default' => get_config('format_topcoll', 'defaulttoggleiconset'),
+                    'default' => get_config('format_moonstone', 'defaulttoggleiconset'),
                     'type' => PARAM_ALPHA,
                 ),
                 'toggleallhover' => array(
-                    'default' => get_config('format_topcoll', 'defaulttoggleallhover'),
+                    'default' => get_config('format_moonstone', 'defaulttoggleallhover'),
                     'type' => PARAM_INT,
                 ),
                 'toggleforegroundcolour' => array(
-                    'default' => get_config('format_topcoll', 'defaulttgfgcolour'),
+                    'default' => get_config('format_moonstone', 'defaulttgfgcolour'),
                     'type' => PARAM_ALPHANUM,
                 ),
                 'togglebackgroundcolour' => array(
-                    'default' => get_config('format_topcoll', 'defaulttgbgcolour'),
+                    'default' => get_config('format_moonstone', 'defaulttgbgcolour'),
                     'type' => PARAM_ALPHANUM,
                 ),
                 'togglebackgroundhovercolour' => array(
-                    'default' => get_config('format_topcoll', 'defaulttgbghvrcolour'),
+                    'default' => get_config('format_moonstone', 'defaulttgbghvrcolour'),
                     'type' => PARAM_ALPHANUM,
                 ),
             );
@@ -310,7 +310,7 @@ class format_topcoll extends format_base {
             }
             $courseformatoptionsedit = array(
                 'numsections' => array(
-                    'label' => new lang_string('numbersections', 'format_topcoll'),
+                    'label' => new lang_string('numbersections', 'format_moonstone'),
                     'element_type' => 'select',
                     'element_attributes' => array($sectionmenu),
                 ),
@@ -338,102 +338,102 @@ class format_topcoll extends format_base {
                     'help_component' => 'moodle',
                 )
             );
-            if (has_capability('format/topcoll:changelayout', $coursecontext)) {
+            if (has_capability('format/moonstone:changelayout', $coursecontext)) {
                 $courseformatoptionsedit['layoutelement'] = array(
-                    'label' => new lang_string('setlayoutelements', 'format_topcoll'),
+                    'label' => new lang_string('setlayoutelements', 'format_moonstone'),
                     'help' => 'setlayoutelements',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array( // In insertion order and not numeric for sorting purposes.
-                        array(1 => new lang_string('setlayout_all', 'format_topcoll'),                             // Toggle word, toggle section x and section number.
-                              3 => new lang_string('setlayout_toggle_word_section_x', 'format_topcoll'),           // Toggle word and toggle section x.
-                              2 => new lang_string('setlayout_toggle_word_section_number', 'format_topcoll'),      // Toggle word and section number.
-                              5 => new lang_string('setlayout_toggle_section_x_section_number', 'format_topcoll'), // Toggle section x and section number.
-                              4 => new lang_string('setlayout_toggle_word', 'format_topcoll'),                     // Toggle word.
-                              8 => new lang_string('setlayout_toggle_section_x', 'format_topcoll'),                // Toggle section x.
-                              6 => new lang_string('setlayout_section_number', 'format_topcoll'),                  // Section number.
-                              7 => new lang_string('setlayout_no_additions', 'format_topcoll'))                    // No additions.
+                        array(1 => new lang_string('setlayout_all', 'format_moonstone'),                             // Toggle word, toggle section x and section number.
+                              3 => new lang_string('setlayout_toggle_word_section_x', 'format_moonstone'),           // Toggle word and toggle section x.
+                              2 => new lang_string('setlayout_toggle_word_section_number', 'format_moonstone'),      // Toggle word and section number.
+                              5 => new lang_string('setlayout_toggle_section_x_section_number', 'format_moonstone'), // Toggle section x and section number.
+                              4 => new lang_string('setlayout_toggle_word', 'format_moonstone'),                     // Toggle word.
+                              8 => new lang_string('setlayout_toggle_section_x', 'format_moonstone'),                // Toggle section x.
+                              6 => new lang_string('setlayout_section_number', 'format_moonstone'),                  // Section number.
+                              7 => new lang_string('setlayout_no_additions', 'format_moonstone'))                    // No additions.
                     )
                 );
                 $courseformatoptionsedit['layoutstructure'] = array(
-                    'label' => new lang_string('setlayoutstructure', 'format_topcoll'),
+                    'label' => new lang_string('setlayoutstructure', 'format_moonstone'),
                     'help' => 'setlayoutstructure',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
-                        array(1 => new lang_string('setlayoutstructuretopic', 'format_topcoll'),             // Topic.
-                              2 => new lang_string('setlayoutstructureweek', 'format_topcoll'),              // Week.
-                              3 => new lang_string('setlayoutstructurelatweekfirst', 'format_topcoll'),      // Latest Week First.
-                              4 => new lang_string('setlayoutstructurecurrenttopicfirst', 'format_topcoll'), // Current Topic First.
-                              5 => new lang_string('setlayoutstructureday', 'format_topcoll'))               // Day.
+                        array(1 => new lang_string('setlayoutstructuretopic', 'format_moonstone'),             // Topic.
+                              2 => new lang_string('setlayoutstructureweek', 'format_moonstone'),              // Week.
+                              3 => new lang_string('setlayoutstructurelatweekfirst', 'format_moonstone'),      // Latest Week First.
+                              4 => new lang_string('setlayoutstructurecurrenttopicfirst', 'format_moonstone'), // Current Topic First.
+                              5 => new lang_string('setlayoutstructureday', 'format_moonstone'))               // Day.
                     )
                 );
                 $courseformatoptionsedit['layoutcolumns'] = array(
-                    'label' => new lang_string('setlayoutcolumns', 'format_topcoll'),
+                    'label' => new lang_string('setlayoutcolumns', 'format_moonstone'),
                     'help' => 'setlayoutcolumns',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
-                        array(1 => new lang_string('one', 'format_topcoll'),   // Default.
-                              2 => new lang_string('two', 'format_topcoll'),   // Two.
-                              3 => new lang_string('three', 'format_topcoll'), // Three.
-                              4 => new lang_string('four', 'format_topcoll'))  // Four.
+                        array(1 => new lang_string('one', 'format_moonstone'),   // Default.
+                              2 => new lang_string('two', 'format_moonstone'),   // Two.
+                              3 => new lang_string('three', 'format_moonstone'), // Three.
+                              4 => new lang_string('four', 'format_moonstone'))  // Four.
                     )
                 );
                 $courseformatoptionsedit['layoutcolumnorientation'] = array(
-                    'label' => new lang_string('setlayoutcolumnorientation', 'format_topcoll'),
+                    'label' => new lang_string('setlayoutcolumnorientation', 'format_moonstone'),
                     'help' => 'setlayoutcolumnorientation',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
-                        array(1 => new lang_string('columnvertical', 'format_topcoll'),
-                              2 => new lang_string('columnhorizontal', 'format_topcoll')) // Default.
+                        array(1 => new lang_string('columnvertical', 'format_moonstone'),
+                              2 => new lang_string('columnhorizontal', 'format_moonstone')) // Default.
                     )
                 );
             } else {
                 $courseformatoptionsedit['layoutelement'] =
-                    array('label' => new lang_string('setlayoutelements', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('setlayoutelements', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['layoutstructure'] =
-                    array('label' => new lang_string('setlayoutstructure', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('setlayoutstructure', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['layoutcolumns'] =
-                    array('label' => new lang_string('setlayoutcolumns', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('setlayoutcolumns', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['layoutcolumnorientation'] =
-                    array('label' => new lang_string('setlayoutcolumnorientation', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('setlayoutcolumnorientation', 'format_moonstone'), 'element_type' => 'hidden');
             }
 
-            if (has_capability('format/topcoll:changetogglealignment', $coursecontext)) {
+            if (has_capability('format/moonstone:changetogglealignment', $coursecontext)) {
                 $courseformatoptionsedit['togglealignment'] = array(
-                    'label' => new lang_string('settogglealignment', 'format_topcoll'),
+                    'label' => new lang_string('settogglealignment', 'format_moonstone'),
                     'help' => 'settogglealignment',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
-                        array(1 => new lang_string('left', 'format_topcoll'),   // Left.
-                              2 => new lang_string('center', 'format_topcoll'), // Centre.
-                              3 => new lang_string('right', 'format_topcoll'))  // Right.
+                        array(1 => new lang_string('left', 'format_moonstone'),   // Left.
+                              2 => new lang_string('center', 'format_moonstone'), // Centre.
+                              3 => new lang_string('right', 'format_moonstone'))  // Right.
                     )
                 );
             } else {
                 $courseformatoptionsedit['togglealignment'] =
-                    array('label' => new lang_string('settogglealignment', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settogglealignment', 'format_moonstone'), 'element_type' => 'hidden');
             }
 
-            if (has_capability('format/topcoll:changetoggleiconset', $coursecontext)) {
+            if (has_capability('format/moonstone:changetoggleiconset', $coursecontext)) {
                 $courseformatoptionsedit['toggleiconset'] = array(
-                    'label' => new lang_string('settoggleiconset', 'format_topcoll'),
+                    'label' => new lang_string('settoggleiconset', 'format_moonstone'),
                     'help' => 'settoggleiconset',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
-                        array('arrow' => new lang_string('arrow', 'format_topcoll'), // Arrow icon set.
-                              'point' => new lang_string('point', 'format_topcoll'), // Point icon set.
-                              'power' => new lang_string('power', 'format_topcoll')) // Power icon set.
+                        array('arrow' => new lang_string('arrow', 'format_moonstone'), // Arrow icon set.
+                              'point' => new lang_string('point', 'format_moonstone'), // Point icon set.
+                              'power' => new lang_string('power', 'format_moonstone')) // Power icon set.
                     )
                 );
                 $courseformatoptionsedit['toggleallhover'] = array(
-                    'label' => new lang_string('settoggleallhover', 'format_topcoll'),
+                    'label' => new lang_string('settoggleallhover', 'format_moonstone'),
                     'help' => 'settoggleallhover',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(1 => new lang_string('no'),
@@ -442,46 +442,46 @@ class format_topcoll extends format_base {
                 );
             } else {
                 $courseformatoptionsedit['toggleiconset'] =
-                    array('label' => new lang_string('settoggleiconset', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settoggleiconset', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['toggleallhover'] =
-                    array('label' => new lang_string('settoggleallhover', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settoggleallhover', 'format_moonstone'), 'element_type' => 'hidden');
             }
 
-            if (has_capability('format/topcoll:changecolour', $coursecontext)) {
+            if (has_capability('format/moonstone:changecolour', $coursecontext)) {
                 $courseformatoptionsedit['toggleforegroundcolour'] = array(
-                    'label' => new lang_string('settoggleforegroundcolour', 'format_topcoll'),
+                    'label' => new lang_string('settoggleforegroundcolour', 'format_moonstone'),
                     'help' => 'settoggleforegroundcolour',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'tccolourpopup',
                     'element_attributes' => array(
-                        array('tabindex' => -1, 'value' => get_config('format_topcoll', 'defaulttgfgcolour'))
+                        array('tabindex' => -1, 'value' => get_config('format_moonstone', 'defaulttgfgcolour'))
                     )
                 );
                 $courseformatoptionsedit['togglebackgroundcolour'] = array(
-                    'label' => new lang_string('settogglebackgroundcolour', 'format_topcoll'),
+                    'label' => new lang_string('settogglebackgroundcolour', 'format_moonstone'),
                     'help' => 'settogglebackgroundcolour',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'tccolourpopup',
                     'element_attributes' => array(
-                        array('tabindex' => -1, 'value' => get_config('format_topcoll', 'defaulttgbgcolour'))
+                        array('tabindex' => -1, 'value' => get_config('format_moonstone', 'defaulttgbgcolour'))
                     )
                 );
                 $courseformatoptionsedit['togglebackgroundhovercolour'] = array(
-                    'label' => new lang_string('settogglebackgroundhovercolour', 'format_topcoll'),
+                    'label' => new lang_string('settogglebackgroundhovercolour', 'format_moonstone'),
                     'help' => 'settogglebackgroundhovercolour',
-                    'help_component' => 'format_topcoll',
+                    'help_component' => 'format_moonstone',
                     'element_type' => 'tccolourpopup',
                     'element_attributes' => array(
-                        array('tabindex' => -1, 'value' => get_config('format_topcoll', 'defaulttgbghvrcolour'))
+                        array('tabindex' => -1, 'value' => get_config('format_moonstone', 'defaulttgbghvrcolour'))
                     )
                 );
             } else {
                 $courseformatoptionsedit['toggleforegroundcolour'] =
-                    array('label' => new lang_string('settoggleforegroundcolour', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settoggleforegroundcolour', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['togglebackgroundcolour'] =
-                    array('label' => new lang_string('settogglebackgroundcolour', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settogglebackgroundcolour', 'format_moonstone'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['togglebackgroundhovercolour'] =
-                    array('label' => new lang_string('settogglebackgroundhovercolour', 'format_topcoll'), 'element_type' => 'hidden');
+                    array('label' => new lang_string('settogglebackgroundhovercolour', 'format_moonstone'), 'element_type' => 'hidden');
             }
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
@@ -499,7 +499,7 @@ class format_topcoll extends format_base {
      */
     public function create_edit_form_elements(&$mform, $forsection = false) {
         global $CFG;
-        MoodleQuickForm::registerElementType('tccolourpopup', "$CFG->dirroot/course/format/topcoll/js/tc_colourpopup.php", 'MoodleQuickForm_tccolourpopup');
+        MoodleQuickForm::registerElementType('tccolourpopup', "$CFG->dirroot/course/format/moonstone/js/tc_colourpopup.php", 'MoodleQuickForm_tccolourpopup');
 
         $elements = parent::create_edit_form_elements($mform, $forsection);
         if ($forsection == false) {
@@ -523,49 +523,49 @@ class format_topcoll extends format_base {
 
             $coursecontext = context_course::instance($COURSE->id);
 
-            $changelayout = has_capability('format/topcoll:changelayout', $coursecontext);
-            $changecolour = has_capability('format/topcoll:changecolour', $coursecontext);
-            $changetogglealignment = has_capability('format/topcoll:changetogglealignment', $coursecontext);
-            $changetoggleiconset = has_capability('format/topcoll:changetoggleiconset', $coursecontext);
+            $changelayout = has_capability('format/moonstone:changelayout', $coursecontext);
+            $changecolour = has_capability('format/moonstone:changecolour', $coursecontext);
+            $changetogglealignment = has_capability('format/moonstone:changetogglealignment', $coursecontext);
+            $changetoggleiconset = has_capability('format/moonstone:changetoggleiconset', $coursecontext);
             $resetall = is_siteadmin($USER); // Site admins only.
 
             if ($changelayout || $changecolour || $changetogglealignment || $changetoggleiconset || $resetall) {
-                $elements[] = $mform->addElement('header', 'ctreset', get_string('ctreset', 'format_topcoll'));
+                $elements[] = $mform->addElement('header', 'ctreset', get_string('ctreset', 'format_moonstone'));
             }
 
             if ($changelayout) {
-                $mform->addHelpButton('ctreset', 'ctreset', 'format_topcoll', '', true);
-                $elements[] = $mform->addElement('checkbox', 'resetlayout', get_string('resetlayout', 'format_topcoll'), false);
-                $mform->addHelpButton('resetlayout', 'resetlayout', 'format_topcoll', '', true);
+                $mform->addHelpButton('ctreset', 'ctreset', 'format_moonstone', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetlayout', get_string('resetlayout', 'format_moonstone'), false);
+                $mform->addHelpButton('resetlayout', 'resetlayout', 'format_moonstone', '', true);
             }
 
             if ($changecolour) {
-                $elements[] = $mform->addElement('checkbox', 'resetcolour', get_string('resetcolour', 'format_topcoll'), false);
-                $mform->addHelpButton('resetcolour', 'resetcolour', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetcolour', get_string('resetcolour', 'format_moonstone'), false);
+                $mform->addHelpButton('resetcolour', 'resetcolour', 'format_moonstone', '', true);
             }
 
             if ($changetogglealignment) {
-                $elements[] = $mform->addElement('checkbox', 'resettogglealignment', get_string('resettogglealignment', 'format_topcoll'), false);
-                $mform->addHelpButton('resettogglealignment', 'resettogglealignment', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resettogglealignment', get_string('resettogglealignment', 'format_moonstone'), false);
+                $mform->addHelpButton('resettogglealignment', 'resettogglealignment', 'format_moonstone', '', true);
             }
 
             if ($changetoggleiconset) {
-                $elements[] = $mform->addElement('checkbox', 'resettoggleiconset', get_string('resettoggleiconset', 'format_topcoll'), false);
-                $mform->addHelpButton('resettoggleiconset', 'resettoggleiconset', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resettoggleiconset', get_string('resettoggleiconset', 'format_moonstone'), false);
+                $mform->addHelpButton('resettoggleiconset', 'resettoggleiconset', 'format_moonstone', '', true);
             }
 
             if ($resetall) {
-                $elements[] = $mform->addElement('checkbox', 'resetalllayout', get_string('resetalllayout', 'format_topcoll'), false);
-                $mform->addHelpButton('resetalllayout', 'resetalllayout', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetalllayout', get_string('resetalllayout', 'format_moonstone'), false);
+                $mform->addHelpButton('resetalllayout', 'resetalllayout', 'format_moonstone', '', true);
 
-                $elements[] = $mform->addElement('checkbox', 'resetallcolour', get_string('resetallcolour', 'format_topcoll'), false);
-                $mform->addHelpButton('resetallcolour', 'resetallcolour', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetallcolour', get_string('resetallcolour', 'format_moonstone'), false);
+                $mform->addHelpButton('resetallcolour', 'resetallcolour', 'format_moonstone', '', true);
 
-                $elements[] = $mform->addElement('checkbox', 'resetalltogglealignment', get_string('resetalltogglealignment', 'format_topcoll'), false);
-                $mform->addHelpButton('resetalltogglealignment', 'resetalltogglealignment', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetalltogglealignment', get_string('resetalltogglealignment', 'format_moonstone'), false);
+                $mform->addHelpButton('resetalltogglealignment', 'resetalltogglealignment', 'format_moonstone', '', true);
 
-                $elements[] = $mform->addElement('checkbox', 'resetalltoggleiconset', get_string('resetalltoggleiconset', 'format_topcoll'), false);
-                $mform->addHelpButton('resetalltoggleiconset', 'resetalltoggleiconset', 'format_topcoll', '', true);
+                $elements[] = $mform->addElement('checkbox', 'resetalltoggleiconset', get_string('resetalltoggleiconset', 'format_moonstone'), false);
+                $mform->addHelpButton('resetalltoggleiconset', 'resetalltoggleiconset', 'format_moonstone', '', true);
             }
         }
 
@@ -658,10 +658,10 @@ class format_topcoll extends format_base {
 
         // Now we can do the reset.
         if (($resetalllayout) || ($resetallcolour) || ($resetalltogglealignment) || ($resetalltoggleiconset)) {
-            $this->reset_topcoll_setting(0, $resetalllayout, $resetallcolour, $resetalltogglealignment, $resetalltoggleiconset);
+            $this->reset_moonstone_setting(0, $resetalllayout, $resetallcolour, $resetalltogglealignment, $resetalltoggleiconset);
             $changes = true;
         } else if (($resetlayout) || ($resetcolour) || ($resettogglealignment) || ($resettoggleiconset)) {
-            $this->reset_topcoll_setting($this->courseid, $resetlayout, $resetcolour, $resettogglealignment, $resettoggleiconset);
+            $this->reset_moonstone_setting($this->courseid, $resetlayout, $resetcolour, $resettogglealignment, $resettoggleiconset);
             $changes = true;
         }
 
@@ -682,7 +682,7 @@ class format_topcoll extends format_base {
             }
 
             $timenow = time();
-            $dates = $this->format_topcoll_get_section_dates($section, $this->get_course());
+            $dates = $this->format_moonstone_get_section_dates($section, $this->get_course());
 
             return (($timenow >= $dates->start) && ($timenow < $dates->end));
         } else if ($tcsettings['layoutstructure'] == 5) {
@@ -691,7 +691,7 @@ class format_topcoll extends format_base {
             }
 
             $timenow = time();
-            $day = $this->format_topcoll_get_section_day($section, $this->get_course());
+            $day = $this->format_moonstone_get_section_day($section, $this->get_course());
             $onedayseconds = 86400;
             return (($timenow >= $day) && ($timenow < ($day + $onedayseconds)));
         } else {
@@ -706,7 +706,7 @@ class format_topcoll extends format_base {
      * @param stdClass $course The course entry from DB.
      * @return stdClass property start for startdate, property end for enddate.
      */
-    private function format_topcoll_get_section_dates($section, $course) {
+    private function format_moonstone_get_section_dates($section, $course) {
         $oneweekseconds = 604800;
         // Hack alert. We add 2 hours to avoid possible DST problems. (e.g. we go into daylight
         // savings and the date changes.
@@ -726,7 +726,7 @@ class format_topcoll extends format_base {
      * @param stdClass $course The course entry from DB.
      * @return stdClass property date.
      */
-    private function format_topcoll_get_section_day($section, $course) {
+    private function format_moonstone_get_section_day($section, $course) {
         $onedayseconds = 86400;
         /* Hack alert. We add 2 hours to avoid possible DST problems. (e.g. we go into daylight
            savings and the date changes. */
@@ -745,7 +745,7 @@ class format_topcoll extends format_base {
      * @param int $togglealignment If true, reset the toggle alignment to the default in tcconfig.php.
      * @param int $toggleiconset If true, reset the toggle icon set to the default in tcconfig.php.
      */
-    public function reset_topcoll_setting($courseid, $layout, $colour, $togglealignment, $toggleiconset) {
+    public function reset_moonstone_setting($courseid, $layout, $colour, $togglealignment, $toggleiconset) {
         global $DB, $USER, $COURSE;
 
         $coursecontext = context_course::instance($COURSE->id);
@@ -760,24 +760,24 @@ class format_topcoll extends format_base {
         $resetallifall = ((is_siteadmin($USER)) || ($courseid != 0)); // Will be true if reset all capability or a single course.
 
         $updatedata = array();
-        if ($layout && has_capability('format/topcoll:changelayout', $coursecontext) && $resetallifall) {
-            $updatedata['coursedisplay'] = get_config('format_topcoll', 'defaultcoursedisplay');
-            $updatedata['layoutelement'] = get_config('format_topcoll', 'defaultlayoutelement');
-            $updatedata['layoutstructure'] = get_config('format_topcoll', 'defaultlayoutstructure');
-            $updatedata['layoutcolumns'] = get_config('format_topcoll', 'defaultlayoutcolumns');
-            $updatedata['layoutcolumnorientation'] = get_config('format_topcoll', 'defaultlayoutcolumnorientation');
+        if ($layout && has_capability('format/moonstone:changelayout', $coursecontext) && $resetallifall) {
+            $updatedata['coursedisplay'] = get_config('format_moonstone', 'defaultcoursedisplay');
+            $updatedata['layoutelement'] = get_config('format_moonstone', 'defaultlayoutelement');
+            $updatedata['layoutstructure'] = get_config('format_moonstone', 'defaultlayoutstructure');
+            $updatedata['layoutcolumns'] = get_config('format_moonstone', 'defaultlayoutcolumns');
+            $updatedata['layoutcolumnorientation'] = get_config('format_moonstone', 'defaultlayoutcolumnorientation');
         }
-        if ($togglealignment && has_capability('format/topcoll:changetogglealignment', $coursecontext) && $resetallifall) {
-            $updatedata['togglealignment'] = get_config('format_topcoll', 'defaulttogglealignment');
+        if ($togglealignment && has_capability('format/moonstone:changetogglealignment', $coursecontext) && $resetallifall) {
+            $updatedata['togglealignment'] = get_config('format_moonstone', 'defaulttogglealignment');
         }
-        if ($colour && has_capability('format/topcoll:changecolour', $coursecontext) && $resetallifall) {
-            $updatedata['toggleforegroundcolour'] = get_config('format_topcoll', 'defaulttgfgcolour');
-            $updatedata['togglebackgroundcolour'] = get_config('format_topcoll', 'defaulttgbgcolour');
-            $updatedata['togglebackgroundhovercolour'] = get_config('format_topcoll', 'defaulttgbghvrcolour');
+        if ($colour && has_capability('format/moonstone:changecolour', $coursecontext) && $resetallifall) {
+            $updatedata['toggleforegroundcolour'] = get_config('format_moonstone', 'defaulttgfgcolour');
+            $updatedata['togglebackgroundcolour'] = get_config('format_moonstone', 'defaulttgbgcolour');
+            $updatedata['togglebackgroundhovercolour'] = get_config('format_moonstone', 'defaulttgbghvrcolour');
         }
-        if ($toggleiconset && has_capability('format/topcoll:changetoggleiconset', $coursecontext) && $resetallifall) {
-            $updatedata['toggleiconset'] = get_config('format_topcoll', 'defaulttoggleiconset');
-            $updatedata['toggleallhover'] = get_config('format_topcoll', 'defaulttoggleallhover');
+        if ($toggleiconset && has_capability('format/moonstone:changetoggleiconset', $coursecontext) && $resetallifall) {
+            $updatedata['toggleiconset'] = get_config('format_moonstone', 'defaulttoggleiconset');
+            $updatedata['toggleallhover'] = get_config('format_moonstone', 'defaulttoggleallhover');
         }
 
         foreach ($records as $record) {
@@ -796,7 +796,7 @@ class format_topcoll extends format_base {
     /**
      * Restores the course settings when restoring a Moodle 2.3 or below (bar 1.9) course and sets the settings when upgrading
      * from a prevous version.  Hence no need for 'coursedisplay' as that is a core rather than CT specific setting and not
-     * in the old 'format_topcoll_settings' table.
+     * in the old 'format_moonstone_settings' table.
      * @param int $courseid If not 0, then a specific course to reset.
      * @param int $layoutelement The layout element to use, see tcconfig.php.
      * @param int $layoutstructure The layout structure to use, see tcconfig.php.
@@ -805,7 +805,7 @@ class format_topcoll extends format_base {
      * @param int $tgbgcolour The background colour to use, see tcconfig.php.
      * @param int $tgbghvrcolour The background hover colour to use, see tcconfig.php.
      */
-    public function restore_topcoll_setting($courseid, $layoutelement, $layoutstructure, $layoutcolumns, $tgfgcolour, $tgbgcolour, $tgbghvrcolour) {
+    public function restore_moonstone_setting($courseid, $layoutelement, $layoutstructure, $layoutcolumns, $tgfgcolour, $tgbgcolour, $tgbghvrcolour) {
         $currentcourseid = $this->courseid;  // Save for later - stack data model.
         $this->courseid = $courseid;
         // Create data array.
@@ -826,7 +826,7 @@ class format_topcoll extends format_base {
      * Updates the number of columns when the renderer detects that they are wrong.
      * @param int $layoutcolumns The layout columns to use, see tcconfig.php.
      */
-    public function update_topcoll_columns_setting($layoutcolumns) {
+    public function update_moonstone_columns_setting($layoutcolumns) {
         // Create data array.
         $data = array('layoutcolumns' => $layoutcolumns);
 
@@ -839,15 +839,15 @@ class format_topcoll extends format_base {
  *
  * @return string The section description.
  */
-function callback_topcoll_definition() {
-    return get_string('sectionname', 'format_topcoll');
+function callback_moonstone_definition() {
+    return get_string('sectionname', 'format_moonstone');
 }
 
 /**
  * Deletes the user preference entries for the given course upon course deletion.
  * CONTRIB-3520.
  */
-function format_topcoll_delete_course($courseid) {
+function format_moonstone_delete_course($courseid) {
     global $DB;
-    $DB->delete_records("user_preferences", array("name" => 'topcoll_toggle_' . $courseid));
+    $DB->delete_records("user_preferences", array("name" => 'moonstone_toggle_' . $courseid));
 }

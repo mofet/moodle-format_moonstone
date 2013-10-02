@@ -1,4 +1,6 @@
-﻿Introduction
+﻿This is a refactor of course format topcoll to moonstone (a Mofet Institue version)
+
+Introduction
 ============
 Topic based course format with an individual 'toggle' for each topic except 0.
 
@@ -54,7 +56,7 @@ Installation
  2. If upgrading from Moodle 1.9, 2.0 or 2.1, please see 'Upgrading from Moodle 1.9, 2.0 or 2.1' below.
  3. If upgrading from Moodle 2.2, please see 'Upgrading from Moodle 2.2' below.
  4. If upgrading from Moodle 2.3, please see 'Upgrade Instructions' below.
- 5. Put Moodle in 'Maintenance Mode' (docs.moodle.org/en/admin/setting/maintenancemode) so that there are no 
+ 5. Put Moodle in 'Maintenance Mode' (docs.moodle.org/en/admin/setting/maintenancemode) so that there are no
     users using it bar you as the administrator - if you have not already done so.
  6. Copy 'topcoll' to '/course/format/' if you have not already done so.
  7. In 'Site Administration -> Plugins -> Course formats -> Collapsed Topics' change the values of 'defaultlayoutelement',
@@ -111,9 +113,9 @@ Upgrading from Moodle 2.2
 6.    Put Moodle out of Maintenance Mode.
 NOTE: If the automated upgrade fails for which can be seen by getting errors when using a Collapsed Topics course,
       then please follow this.
-      Please carry on if a table / field has been removed / changed / already exists as it should still work - this 
+      Please carry on if a table / field has been removed / changed / already exists as it should still work - this
       is to cope with the different possible scenarios.  These instructions are written with the MySQL database in
-      mind, however should work with other database engines but the types should be compared with other tables in 
+      mind, however should work with other database engines but the types should be compared with other tables in
       the database to get an idea of what they should be.  If possible please kindly feedback to me any additional
       information you discover so I can update these instructions - contact details at the very bottom.
       The table prefix i.e, 'mdl_' is not stated in the instructions but ensure you know what yours is and use
@@ -121,9 +123,9 @@ NOTE: If the automated upgrade fails for which can be seen by getting errors whe
 1.    In your database:
 2.1   Rename the table 'format_topcoll_layout' to 'format_topcoll_settings'.
 2.2   With the table 'format_topcoll_settings' change all integer types to signed if using a MySQL database.
-2.3   If the table 'format_topcoll_settings' does not exist, then create it and add the following fields 
+2.3   If the table 'format_topcoll_settings' does not exist, then create it and add the following fields
       in this order:
-2.3.1 'id' of type 'BIGINT(10)' type, not null, auto increment, no zero fill with a null default value - the same 
+2.3.1 'id' of type 'BIGINT(10)' type, not null, auto increment, no zero fill with a null default value - the same
        as any other 'id' field in the other tables.  Make it the primary key.
 2.3.2 'courseid' of type 'BIGINT(10)' type, not null, no auto increment, no zero fill with a null default value - the
       same as the 'course' field in the 'course_sections' table bar the default value.
@@ -183,7 +185,7 @@ the 'toggle all' functionality.  For example:
     }
 
     #toggle-all .content .toggle-arrow h4 a.off {
-        background-image: url([[pix:format_topcoll|arrow_down]]); 
+        background-image: url([[pix:format_topcoll|arrow_down]]);
     }
 
 If you would like your own icon set, either replace the icons in the 'pix' folder, deduce how the code works or better
@@ -218,13 +220,13 @@ with the format is in fact to do with a theme or core component.  Please be conf
 but if in doubt, ask.
 
 I operate a policy that I will fix all genuine issues for free.  Improvements are at my discretion.  I am happy to make bespoke
-customisations / improvements for a negotiated fee. 
+customisations / improvements for a negotiated fee.
 
-When reporting an issue you can post in the course format's forum on Moodle.org (currently 'moodle.org/mod/forum/view.php?id=47'), 
+When reporting an issue you can post in the course format's forum on Moodle.org (currently 'moodle.org/mod/forum/view.php?id=47'),
 on Moodle tracker 'tracker.moodle.org' ensuring that you chose the 'Non-core contributed modules' and 'Course Format: Topcoll'
 for the component or contact me direct (details at the bottom).
 
-It is essential that you provide as much information as possible, the critical information being the contents of the format's 
+It is essential that you provide as much information as possible, the critical information being the contents of the format's
 version.php file.  Other version information such as specific Moodle version, theme name and version also helps.  A screen shot
 can be really useful in visualising the issue along with any files you consider to be relevant.
 
@@ -317,7 +319,7 @@ Version Information
 23rd January 2013 - Version 2.4.2.1
   1.  Further tweaks for toggle line height and to make work in IE9 with and without IE7 mode.
   2.  Please perform a 'Purge all caches' under 'Home -> Site administration -> Development -> Purge all caches' when upgrading.
-  
+
 22nd January 2013 - Version 2.4.2
   1.  Added ability to control the orientation of columns when more than one is used.  You can now choose between
       having the sections number down the page (vertical) or left to right (horizontal).  Default is horizontal.  This
@@ -330,7 +332,7 @@ Version Information
   6.  Fixed issue with JavaScript in 'module.js' breaking with 0 or 1 sections causing the 'Add an activity or resource' to fail.
   7.  Changes to 'renderer.php' because of MDL-36095 hence requiring Moodle version 2012120301.02 release 2.4.1+ (Build: 20130118)
       and above.
-  8.  Tweaked for the MyMobile theme but point '2' on 'Known issues' still occurring - any help appreciated. 
+  8.  Tweaked for the MyMobile theme but point '2' on 'Known issues' still occurring - any help appreciated.
   9.  Please perform a 'Purge all caches' under 'Home -> Site administration -> Development -> Purge all caches' when upgrading.
 
 11th January 2013 - Version 2.4.1.7 - Further improvements inspired by CONTRIB-4098.
@@ -536,9 +538,9 @@ Version Information
   1. Put layout columns into backup and restore code.
   2. Tidy up instructions in this readme.
   3. A few slight alterations for the MyMobile theme - MDL-33115.
-  
+
 26th June 2012 - Version 2.3.7rc2 - CONTRIB-3652 development - rewrite for Moodle 2.3
-  1. Removed line that was related to the cookie functionality - thanks Hartmut Scherer and Kyle Smith on 
+  1. Removed line that was related to the cookie functionality - thanks Hartmut Scherer and Kyle Smith on
      http://moodle.org/mod/forum/discuss.php?d=204705.
   2. Removed cookie consent code from lib.php.
   3. To keep things clean for what will be a fresh install for all I have decided to remove the update code in update.php,
@@ -568,7 +570,7 @@ Version Information
 
 20th May 2012 - Version 2.3.6.2.1 - CONTRIB-3655
   1. Changes in module.js for MyMobile theme.
-  
+
 14th May 2012 - Version 2.3.6.2
   1. Fixed slight issue with version number causing 'Site Administration -> Plugins -> Plugin Overview' to fail, please
      see 'http://moodle.org/mod/forum/discuss.php?d=202578'.
@@ -666,7 +668,7 @@ Version Information
 
 28th February 2012 - Version 2.3.3 - Release Candidate 3
   1. Tidied up 'module.js' to be more efficient in using the YUI instance given.
-  2. Updated installation and toggle state instructions. 
+  2. Updated installation and toggle state instructions.
   3. Added uninstall procedure in the unlikely event that you need it.
 
 28th February 2012 - Version 2.3.3 - Release Candidate 2
@@ -781,12 +783,12 @@ NOTE: If uninstallation fails, drop the table 'format_topcoll_layout' and the en
 
 30th May 2011 - Version 1.2.2 - Moodle Tracker CONTRIB-2963
   1. Added in copyright and contact information.
-  
+
 12th May 2011 - Version 1.2.1 - Fixed typo with this readme in expiring cookie duration example.
 
 9th May 2011 - Version 1.2 - Moodle Tracker CONTRIB-2925
   1. Convert all language files to UTF-8 encoding.
-  
+
 12th March 2011 - Version 1.1 - Moodle Tracker CONTRIB-2747
   1. Make the toggle state last beyond the user session if desired.
   2. Changes made for MDL-25927 & MDL-23939.
@@ -814,7 +816,7 @@ Released Moodle 2.0 version.  Treat as completed and out of development.
 12th November 2010 - CONTRIB-1471 & CONTRIB-2497 - Changes as a result of MDL-25072:
   1. Movement of ajax capable stating 'code' from ajax.php to lib.php.
   2. As a consequence, ajax.php removed.
-  3. Added German, French, Spanish (Spain, Mexico and International), Italian, Polish, Portuguese (Brazil too) 
+  3. Added German, French, Spanish (Spain, Mexico and International), Italian, Polish, Portuguese (Brazil too)
      and Welsh.  I used Google Translate! If inaccurate, please let me know!
   4. Added the string 'topcolltogglewidth' to the relevant language file and amended format.php so that
      the word 'Topic' when translated fits within the toggle.
@@ -825,21 +827,21 @@ Released Moodle 2.0 version.  Treat as completed and out of development.
   3. Fixed edit icon showing even when not in edit mode.  A big thank you to [Peeush Bajpai]
      (http://moodle.org/user/profile.php?id=1127356) - for spotting this and suggesting the fix.
   4. Added Dutch language.  Thanks to [Pieter Wolters](http://moodle.org/user/profile.php?id=537037) for this.
-  
+
 25th October 2010 - CONTRIB-1471 - Removal of redundant JavaScript Code.
 
 17th October 2010 - CONTRIB-1471 - Changes as a result of MDL-14679, MDL-20366 and MDL-24316.
   1. Removed the requirement of needing js-override-topcoll.css - to make things simpler.
   2. Tidied up some of the JavaScript to be slightly more efficient.
-  
+
 24th September 2010 - CONTRIB-1471 - Changes as a result of MDL-24321 - changed object to stdClass.
 
 12th September 2010 - Moodle Tracker CONTRIB-2355 & CONTRIB-1471
   1. CONTRIB-2355 - Added the ability to remove 'topic x' and the section number from being displayed.  To do this, open up
-     format.php in a text editor - preferably with line numbers displayed - such as Notepad++ - and read the 
+     format.php in a text editor - preferably with line numbers displayed - such as Notepad++ - and read the
      instructions on lines 216 and 226.
-  2. CONTRIB-1471 - Changes as a result of MDL-14679. 
-  
+  2. CONTRIB-1471 - Changes as a result of MDL-14679.
+
 31st July 2010 - Summary of developments towards release version as I keep pace with Moodle 2.0 changes:
   13th April 2010 - CONTRIB-1471 - Changes as a result of MDL-15252, MDL-21693 & MDL-22056.
   24th April 2010 - CONTRIB-1471 - Fixed section jump when in 'Show only topic x' mode.
@@ -849,11 +851,11 @@ Released Moodle 2.0 version.  Treat as completed and out of development.
   3rd  July  2010 - CONTRIB-1471 as a result of MDL-20475 & MDL-22950.
   30th July  2010 - CONTRIB-1471 as a result of MDL-20628 and CONTRIB-2111 - in essence, sections now have a name attribute, so
                                  this can be used for the topic name instead of the section summary - far better.
-                   
+
 5th April 2010 - Moodle Tracker CONTRIB-1952 & CONTRIB-1954
   1. CONTRIB-1952 - Having an apostrophy in the site shortname causes the format to fail.
   2. CONTRIB-1954 - Reloading of the toggles by using JavaScript DOM events not working for the function reload_toggles,
-     but instead the function was being called at the end of the page regardless of the readiness state of the DOM.       
+     but instead the function was being called at the end of the page regardless of the readiness state of the DOM.
 
 16th February 2010 - Moodle Tracker CONTRIB-1825
   1. Removed the capability to 'Show topic x' unless editing as confusing to users.
@@ -862,7 +864,7 @@ Released Moodle 2.0 version.  Treat as completed and out of development.
      number does not match the display number for the specific element.
   3. Removed redundant calls to `get_context_instance(CONTEXT_COURSE, $course->id)` as result already
      stored in $context variable towards the top - so use in more places.
-     
+
 23rd January 2010 - Moodle Tracler CONTRIB-1756
   1. Put instructions in the CSS file 'topics_collapsed.css' on how you can define theme based toggle colours.
   2. Redesigned the arrow to be more 'modern'.
@@ -874,15 +876,15 @@ Released Moodle 2.0 version.  Treat as completed and out of development.
      adapt to have a non-javascript functionality where all the contents of the toggles are shown and the toggles do
      not exist.
   3. Converted to using the Page Requirements Manager ($PAGE) as much as possible for JavaScript.
-  
-Development Notes:  
+
+Development Notes:
 21st August 2009 -
   1. Fully comment code for future reference.
   2. Please see the documentation on http://docs.moodle.org/en/Collapsed_Topics_course_format
 
 16th July 2009 - Moodle 2.0 Development Version
   This is now the 2.0 development version under the HEAD CVS Tag.
-  
+
 15th July 2009 - Version 1.3 - Visual tidy up and Javascript file reduction!
   1. Moved the prefix words of 'Topic x' to the right hand side of the toggle when the summary exists.
   2. Compressed the lib.js into lib_min.js for faster loading using YUICompressor - original source still available.
@@ -899,7 +901,7 @@ Development Notes:
   4. I would like to slightly alter the binary string to be an array.
   5. I would like to make the lib.js functions a part of a class for future proofing.
   6. Sort out page refresh event so that it works instead of saving the cookie every time a toggle is toggled.
-  
+
 3rd March 2009 - Version 1.1
   Adjusted the Topic Toggle to make the topic summary standout more.
 
@@ -952,7 +954,7 @@ References
 
 Craig Grannell - http://www.snubcommunications.com/
 
-Accordion Format - Initiated the thought - http://moodle.org/mod/forum/discuss.php?d=44773 & 
+Accordion Format - Initiated the thought - http://moodle.org/mod/forum/discuss.php?d=44773 &
                                            http://www.moodleman.net/archives/47
 
 Paint.Net - http://www.getpaint.net/

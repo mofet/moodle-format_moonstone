@@ -7,7 +7,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in version.php.
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -32,14 +32,14 @@
 /**
  * @namespace
  */
-M.format_topcoll = M.format_topcoll || {};
+M.format_moonstone = M.format_moonstone || {};
 
-// Namespace variables 
-M.format_topcoll.toggleBinaryGlobal = "10000000000000000000000000000000000000000000000000000"; // 53 possible toggles - current settings in Moodle for number of topics - 52 + 1 for topic 0.  Need 1 as Most Significant bit to allow toggle 1+ to be off.
-M.format_topcoll.thesparezeros = "00000000000000000000000000"; // A constant of 26 0's to be used to pad the storage state of the toggles when converting between base 2 and 36, this is to be compact.
-M.format_topcoll.courseid;
-M.format_topcoll.togglePersistence = 1; // Toggle persistence - 1 = on, 0 = off.
-M.format_topcoll.ourYUI;
+// Namespace variables
+M.format_moonstone.toggleBinaryGlobal = "10000000000000000000000000000000000000000000000000000"; // 53 possible toggles - current settings in Moodle for number of topics - 52 + 1 for topic 0.  Need 1 as Most Significant bit to allow toggle 1+ to be off.
+M.format_moonstone.thesparezeros = "00000000000000000000000000"; // A constant of 26 0's to be used to pad the storage state of the toggles when converting between base 2 and 36, this is to be compact.
+M.format_moonstone.courseid;
+M.format_moonstone.togglePersistence = 1; // Toggle persistence - 1 = on, 0 = off.
+M.format_moonstone.ourYUI;
 
 /**
  * Initialise with the information supplied from the course format 'format.php' so we can operate.
@@ -49,7 +49,7 @@ M.format_topcoll.ourYUI;
  * @param {Integer} theTogglePersistence Persistence on (1) or off (0).
  * @param {Integer} theDefaultTogglePersistence Persistence all open (1) or all closed (0) when thetogglestate is null.
  */
-M.format_topcoll.init = function(Y, theCourseId, theToggleState, theTogglePersistence, theDefaultTogglePersistence) {
+M.format_moonstone.init = function(Y, theCourseId, theToggleState, theTogglePersistence, theDefaultTogglePersistence) {
     "use strict";
     // Init.
     this.ourYUI = Y;
@@ -84,33 +84,33 @@ M.format_topcoll.init = function(Y, theCourseId, theToggleState, theTogglePersis
     }
 };
 
-M.format_topcoll.toggleClick = function(e) {
+M.format_moonstone.toggleClick = function(e) {
     var toggleIndex = parseInt(e.currentTarget.get('id').replace("toggle-", ""));
     e.preventDefault();
     this.toggle_topic(e.currentTarget, toggleIndex);
 };
 
-M.format_topcoll.allOpenClick = function(e) {
+M.format_moonstone.allOpenClick = function(e) {
     e.preventDefault();
-    M.format_topcoll.ourYUI.all(".toggledsection").show().setStyle('display', 'block');
-    M.format_topcoll.ourYUI.all(".toggle a").addClass('toggle_open').removeClass('toggle_closed');
-    M.format_topcoll.toggleBinaryGlobal = "11111111111111111111111111111111111111111111111111111";
-    M.format_topcoll.save_toggles();
+    M.format_moonstone.ourYUI.all(".toggledsection").show().setStyle('display', 'block');
+    M.format_moonstone.ourYUI.all(".toggle a").addClass('toggle_open').removeClass('toggle_closed');
+    M.format_moonstone.toggleBinaryGlobal = "11111111111111111111111111111111111111111111111111111";
+    M.format_moonstone.save_toggles();
 };
 
-M.format_topcoll.allCloseClick = function(e) {
+M.format_moonstone.allCloseClick = function(e) {
     e.preventDefault();
-    M.format_topcoll.ourYUI.all(".toggledsection").hide();
-    M.format_topcoll.ourYUI.all(".toggle a").addClass('toggle_closed').removeClass('toggle_open');
-    M.format_topcoll.toggleBinaryGlobal = "10000000000000000000000000000000000000000000000000000";
-    M.format_topcoll.save_toggles();
+    M.format_moonstone.ourYUI.all(".toggledsection").hide();
+    M.format_moonstone.ourYUI.all(".toggle a").addClass('toggle_closed').removeClass('toggle_open');
+    M.format_moonstone.toggleBinaryGlobal = "10000000000000000000000000000000000000000000000000000";
+    M.format_moonstone.save_toggles();
 };
 
 // Toggle functions
 // Change the toggle binary global state as a toggle has been changed - toggle number 0 should never be switched as it is the most significant bit and represents the non-toggling topic 0.
 // Args - toggleNum is an integer and toggleVal is a string which will either be "1" or "0"
 //        savetoggles save the toggle state - used so that all_toggles does not make multiple requests but instead one.
-M.format_topcoll.togglebinary = function(toggleNum, toggleVal, savetoggles) {
+M.format_moonstone.togglebinary = function(toggleNum, toggleVal, savetoggles) {
     "use strict";
     // Toggle num should be between 1 and 52 - see definition of toggleBinaryGlobal above.
     if ((toggleNum >= 1) && (toggleNum <= 52)) {
@@ -126,7 +126,7 @@ M.format_topcoll.togglebinary = function(toggleNum, toggleVal, savetoggles) {
 };
 
 // Args - targetNode that initiated the call, toggleNum the number of the toggle.
-M.format_topcoll.toggle_topic = function(targetNode, toggleNum) {
+M.format_moonstone.toggle_topic = function(targetNode, toggleNum) {
     "use strict";
     var targetLink = targetNode.one('a');
     if (!targetLink.hasClass('toggle_open')) {
@@ -145,14 +145,14 @@ M.format_topcoll.toggle_topic = function(targetNode, toggleNum) {
 // This is all required to save cookie space, so instead of using 53 bytes (characters) per course, only 12 are used.
 // Convert from a base 36 string to a base 2 string - effectively a private function.
 // Args - thirtysix - a 12 character string representing a base 36 number.
-M.format_topcoll.to2baseString = function(thirtysix) {
+M.format_moonstone.to2baseString = function(thirtysix) {
     "use strict";
     // Break apart the string because integers are signed 32 bit and therefore can only store 31 bits, therefore a 53 bit number will cause overflow / carry with loss of resolution.
     var firstpart = parseInt(thirtysix.substring(0,6),36);
     var secondpart = parseInt(thirtysix.substring(6,12),36);
     var fps = firstpart.toString(2);
     var sps = secondpart.toString(2);
-    
+
     // Add in preceding 0's if base 2 sub strings are not long enough
     if (fps.length < 26) {
         // Need to PAD.
@@ -162,13 +162,13 @@ M.format_topcoll.to2baseString = function(thirtysix) {
         // Need to PAD.
         sps = this.thesparezeros.substring(0,(27 - sps.length)) + sps;
     }
-    
+
     return fps + sps;
 };
 
 // Convert from a base 2 string to a base 36 string - effectively a private function.
 // Args - two - a 52 character string representing a base 2 number.
-M.format_topcoll.to36baseString = function(two) {
+M.format_moonstone.to36baseString = function(two) {
     "use strict";
     // Break apart the string because integers are signed 32 bit and therefore can only store 31 bits, therefore a 52 bit number will cause overflow / carry with loss of resolution.
     var firstpart = parseInt(two.substring(0,26),2);
@@ -191,9 +191,9 @@ M.format_topcoll.to36baseString = function(two) {
 
 // Save the toggles - called from togglebinary and allToggle.
 // AJAX call to server to save the state of the toggles for this course for the current user if on.
-M.format_topcoll.save_toggles = function() {
+M.format_moonstone.save_toggles = function() {
     "use strict";
     if (this.togglePersistence == 1) { // Toggle persistence - 1 = on, 0 = off.
-        M.util.set_user_preference('topcoll_toggle_'+this.courseid , this.to36baseString(this.toggleBinaryGlobal));
+        M.util.set_user_preference('moonstone_toggle_'+this.courseid , this.to36baseString(this.toggleBinaryGlobal));
     }
 };

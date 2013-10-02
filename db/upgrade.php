@@ -9,7 +9,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in below.
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -30,24 +30,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 require_once($CFG->dirroot . '/course/format/lib.php');
-require_once($CFG->dirroot . '/course/format/topcoll/lib.php');
+require_once($CFG->dirroot . '/course/format/moonstone/lib.php');
 
-function xmldb_format_topcoll_upgrade($oldversion = 0) {
+function xmldb_format_moonstone_upgrade($oldversion = 0) {
 
     global $DB;
     $dbman = $DB->get_manager();
     $result = true;
 
-    /* From Moodle 2.2 bit, this places the right defaults in the 'format_topcoll_settings' table so they can be read by the 2.3
+    /* From Moodle 2.2 bit, this places the right defaults in the 'format_moonstone_settings' table so they can be read by the 2.3
        update code even though the table is then dropped.... */
     if ($result && $oldversion < 2012070300) {
-        // Rename table format_topcoll_layout if it exists.
-        $table = new xmldb_table('format_topcoll_layout');
+        // Rename table format_moonstone_layout if it exists.
+        $table = new xmldb_table('format_moonstone_layout');
         // Rename the table...
         if ($dbman->table_exists($table)) {
-            $dbman->rename_table($table, 'format_topcoll_settings');
+            $dbman->rename_table($table, 'format_moonstone_settings');
         }
-        $table = new xmldb_table('format_topcoll_settings');   // Use the new table.
+        $table = new xmldb_table('format_moonstone_settings');   // Use the new table.
         // If the table does not exist, create it along with its fields.
         if (!$dbman->table_exists($table)) {
             // Adding fields.
@@ -63,7 +63,7 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             $dbman->create_table($table);
         }
         // Moodle 2.3 uses signed integers.
-        // Changing sign of field id on table format_topcoll_settings to signed - mysql only,
+        // Changing sign of field id on table format_moonstone_settings to signed - mysql only,
         // see 'upgrade_mysql_fix_unsigned_columns()' in '/lib/db/upgradelib.php'.
         if ($DB->get_dbfamily() == 'mysql') {
             $field = new xmldb_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null, null);
@@ -71,26 +71,26 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             // Launch change of sign for field id.
             $dbman->change_field_unsigned($table, $field);
 
-            // Changing sign of field courseid on table format_topcoll_settings to signed.
+            // Changing sign of field courseid on table format_moonstone_settings to signed.
             $field = new xmldb_field('courseid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null, 'id');
 
             // Launch change of sign for field courseid.
             $dbman->change_field_unsigned($table, $field);
 
-            // Changing sign of field layoutelement on table format_topcoll_settings to signed.
+            // Changing sign of field layoutelement on table format_moonstone_settings to signed.
             $field = new xmldb_field('layoutelement', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '1', 'courseid');
 
             // Launch change of sign for field layoutelement.
             $dbman->change_field_unsigned($table, $field);
 
-            // Changing sign of field layoutstructure on table format_topcoll_settings to signed.
+            // Changing sign of field layoutstructure on table format_moonstone_settings to signed.
             $field = new xmldb_field('layoutstructure', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'layoutelement');
 
             // Launch change of sign for field layoutstructure.
             $dbman->change_field_unsigned($table, $field);
         }
 
-        // Define field tgfgcolour to be added to format_topcoll_settings.
+        // Define field tgfgcolour to be added to format_moonstone_settings.
         $field = new xmldb_field('tgfgcolour', XMLDB_TYPE_CHAR, '6', null, XMLDB_NOTNULL, null, '000000', 'layoutstructure');
 
         // Conditionally launch add field tgfgcolour.
@@ -98,7 +98,7 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             $dbman->add_field($table, $field);
         }
 
-        // Define field tgbgcolour to be added to format_topcoll_settings.
+        // Define field tgbgcolour to be added to format_moonstone_settings.
         $field = new xmldb_field('tgbgcolour', XMLDB_TYPE_CHAR, '6', null, XMLDB_NOTNULL, null, 'e2e2f2', 'tgfgcolour');
 
         // Conditionally launch add field tgbgcolour.
@@ -106,7 +106,7 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             $dbman->add_field($table, $field);
         }
 
-        // Define field tgbghvrcolour to be added to format_topcoll_settings.
+        // Define field tgbghvrcolour to be added to format_moonstone_settings.
         $field = new xmldb_field('tgbghvrcolour', XMLDB_TYPE_CHAR, '6', null, XMLDB_NOTNULL, null, 'eeeeff', 'tgbgcolour');
 
         // Conditionally launch add field tgbghvrcolour.
@@ -114,7 +114,7 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             $dbman->add_field($table, $field);
         }
 
-        // New field layoutcolumns on table format_topcoll_settings.  This is not the same place as install.xml
+        // New field layoutcolumns on table format_moonstone_settings.  This is not the same place as install.xml
         // because of altering previous field issue but will work.
         $field = new xmldb_field('layoutcolumns', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'tgbghvrcolour');
         // Conditionally launch add field layoutcolumns.
@@ -122,9 +122,9 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
             $dbman->add_field($table, $field);
         }
 
-        // Drop table format_topcoll_cookie_cnsnt if it exists - this may not work, please check db to see that
+        // Drop table format_moonstone_cookie_cnsnt if it exists - this may not work, please check db to see that
         // the table has really gone.
-        $table = new xmldb_table('format_topcoll_cookie_cnsnt');
+        $table = new xmldb_table('format_moonstone_cookie_cnsnt');
 
         // Drop the table...
         if ($dbman->table_exists($table)) {
@@ -134,7 +134,7 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
 
     // From Moodle 2.3 bit....
     if ($result && $oldversion < 2012120100) { // Note to self, Moodle 2.3 version cannot now be greater than this.
-        $table = new xmldb_table('format_topcoll_settings');
+        $table = new xmldb_table('format_moonstone_settings');
         if ($dbman->table_exists($table) == true) {
             // Extract data out of table and put in course settings table for 2.4.
             $records = $DB->get_records($table->getName());
@@ -142,14 +142,14 @@ function xmldb_format_topcoll_upgrade($oldversion = 0) {
                 // Check that the course still exists - CONTRIB-4065...
                 if ($DB->record_exists('course', array('id' => $record->courseid))) {
                     $courseformat = course_get_format($record->courseid);  // In '/course/format/lib.php'.
-                    // Only update if the current format is 'topcoll' as we must have an instance of 'format_topcoll' (in 'lib.php')
+                    // Only update if the current format is 'moonstone' as we must have an instance of 'format_moonstone' (in 'lib.php')
                     // returned by the above.  Thanks to Marina Glancy for this :).
-                    // If there are entries that existed for courses that were originally topcoll, then they will be lost.  However
+                    // If there are entries that existed for courses that were originally moonstone, then they will be lost.  However
                     // the code copes with this through the employment of defaults and I dont think the underlying
                     // code desires entries in the course_format_settings table for courses of a format that belong
                     //to another format.
-                    if ($courseformat->get_format() == 'topcoll') {
-                        $courseformat->restore_topcoll_setting($record->courseid, $record->layoutelement, $record->layoutstructure, $record->layoutcolumns, $record->tgfgcolour, $record->tgbgcolour, $record->tgbghvrcolour); // In '/course/format/topcoll/lib.php'.
+                    if ($courseformat->get_format() == 'moonstone') {
+                        $courseformat->restore_moonstone_setting($record->courseid, $record->layoutelement, $record->layoutstructure, $record->layoutcolumns, $record->tgfgcolour, $record->tgbgcolour, $record->tgbghvrcolour); // In '/course/format/moonstone/lib.php'.
                     }
                 }
             }

@@ -8,7 +8,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in version.php.
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -66,7 +66,7 @@ $courseformat = course_get_format($course);
 $course = $courseformat->get_course();
 course_create_sections_if_missing($course, range(0, $course->numsections));
 
-$renderer = $PAGE->get_renderer('format_topcoll');
+$renderer = $PAGE->get_renderer('format_moonstone');
 
 if (!empty($displaysection)) {
     $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
@@ -81,17 +81,17 @@ if (!empty($displaysection)) {
     }
     $renderer->set_portable($portable);
 
-    user_preference_allow_ajax_update('topcoll_toggle_' . $course->id, PARAM_ALPHANUM);
-    $userpreference = get_user_preferences('topcoll_toggle_' . $course->id);
+    user_preference_allow_ajax_update('moonstone_toggle_' . $course->id, PARAM_ALPHANUM);
+    $userpreference = get_user_preferences('moonstone_toggle_' . $course->id);
     $renderer->set_user_preference($userpreference);
 
-    $defaultuserpreference = clean_param(get_config('format_topcoll', 'defaultuserpreference'), PARAM_INT);
+    $defaultuserpreference = clean_param(get_config('format_moonstone', 'defaultuserpreference'), PARAM_INT);
     $renderer->set_default_user_preference($defaultuserpreference);
 
-    $PAGE->requires->js_init_call('M.format_topcoll.init', array(
+    $PAGE->requires->js_init_call('M.format_moonstone.init', array(
         $course->id,
         $userpreference,
-        clean_param(get_config('format_topcoll', 'defaulttogglepersistence'), PARAM_INT),
+        clean_param(get_config('format_moonstone', 'defaulttogglepersistence'), PARAM_INT),
         $defaultuserpreference));
 
     $tcsettings = $courseformat->get_settings();
@@ -146,14 +146,14 @@ if (!empty($displaysection)) {
     // Dynamically changing widths with language.
     if ((!$PAGE->user_is_editing()) && ($portable == 0)) {
         echo '.course-content ul.ctopics li.section.main .content, .course-content ul.ctopics li.tcsection .content {';
-        echo 'margin: 0 ' . get_string('topcollsidewidth', 'format_topcoll');
+        echo 'margin: 0 ' . get_string('moonstonesidewidth', 'format_moonstone');
         echo '}';
     }
 
     // Make room for editing icons.
     if (!$PAGE->user_is_editing()) {
         echo '.course-content ul.ctopics li.section.main .side, .course-content ul.ctopics li.tcsection .side {';
-        echo 'width: ' . get_string('topcollsidewidth', 'format_topcoll');
+        echo 'width: ' . get_string('moonstonesidewidth', 'format_moonstone');
         echo '}';
     }
 
@@ -176,4 +176,4 @@ if (!empty($displaysection)) {
 }
 
 // Include course format js module.
-$PAGE->requires->js('/course/format/topcoll/format.js');
+$PAGE->requires->js('/course/format/moonstone/format.js');

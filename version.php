@@ -9,7 +9,7 @@
  * code change. Full installation instructions, code adaptions and credits are included in the 'Readme.txt' file.
  *
  * @package    course/format
- * @subpackage topcoll
+ * @subpackage moonstone
  * @version    See the value of '$plugin->version' in below.
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
@@ -34,5 +34,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2013060600;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires = 2013051400.00; // 2.5 (Build: 20130514).
-$plugin->component = 'format_topcoll';
+$plugin->component = 'format_moonstone';
 $plugin->release = '2.5.1.1';

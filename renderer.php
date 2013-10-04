@@ -774,7 +774,7 @@ class format_moonstone_renderer extends format_section_renderer_base {
                                 'increase' => true,
                                 'sesskey' => sesskey()));
             $icon = $this->output->pix_icon('t/switch_plus', $straddsection);
-            echo html_writer::link($url, $icon . get_accesshide($straddsection), array('class' => 'increase-sections'));
+            echo html_writer::link($url, $icon . $straddsection.' '.get_accesshide($straddsection), array('class' => 'increase-sections'));
 
             if ($course->numsections > 0) {
                 // Reduce number of sections sections.
@@ -784,7 +784,7 @@ class format_moonstone_renderer extends format_section_renderer_base {
                                     'increase' => false,
                                     'sesskey' => sesskey()));
                 $icon = $this->output->pix_icon('t/switch_minus', $strremovesection);
-                echo html_writer::link($url, $icon . get_accesshide($strremovesection), array('class' => 'reduce-sections'));
+                echo html_writer::link($url, $icon . $strremovesection. ' '.get_accesshide($strremovesection), array('class' => 'reduce-sections'));
             }
 
             echo html_writer::end_tag('div');

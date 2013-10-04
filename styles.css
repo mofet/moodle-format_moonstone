@@ -34,6 +34,7 @@
 .course-content ul.ctlayout {
     float: left;
 }
+.dir-rtl .course-content ul.ctlayout {float:right;}
 
 .course-content ul.ctopics li.section.main, .course-content ul.ctopics li.tcsection {
     list-style: none;

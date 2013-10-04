@@ -322,3 +322,7 @@ body.jsenabled #toggle-all {
     width: 35px;
     text-decoration: none;
 }
+
+/* Display hidden topics as disabled/grayed out */
+#page-course-view-moonstone .section.main.hidden {width:100%}
+#page-course-view-moonstone .section.main.hidden .left.side {display:none;}

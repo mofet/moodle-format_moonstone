@@ -72,6 +72,7 @@ course_create_sections_if_missing($course, range(0, $course->numsections));
 
 $renderer = $PAGE->get_renderer('format_topcoll');
 
+/*
 $devicetype = core_useragent::get_device_type(); // In moodlelib.php.
 if ($devicetype == "mobile") {
     $portable = 1;
@@ -81,6 +82,7 @@ if ($devicetype == "mobile") {
     $portable = 0;
 }
 $renderer->set_portable($portable);
+*/
 
 if (!empty($displaysection)) {
     $renderer->print_single_section_page($course, null, null, null, null, $displaysection);

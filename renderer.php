@@ -72,7 +72,14 @@ class format_topcoll_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     protected function start_section_list() {
-        return html_writer::start_tag('ul', array('class' => 'ctopics'));
+        $classes = 'ctopics';
+        if ($this->tcsettings['layouttheme'] == 2) {
+            $classes .= ' moonstones '; // Overview on the side.
+        }
+        if ($this->tcsettings['layouttheme'] == 3) {
+            $classes .= ' moonstonet '; // Overview on the top.
+        }
+        return html_writer::start_tag('ul', array('class' => $classes));
     }
 
     /**
@@ -80,7 +87,18 @@ class format_topcoll_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     protected function start_toggle_section_list() {
-        $classes = 'ctopics topics';
+        //$classes = 'ctopics topics';
+
+        $classes = 'ctopics';
+        if ($this->tcsettings['layouttheme'] == 1) {
+            $classes .= ' topics'; // Overview on the side.
+        }
+        if ($this->tcsettings['layouttheme'] == 2) {
+            $classes .= ' moonstones'; // Overview on the side.
+        }
+        if ($this->tcsettings['layouttheme'] == 3) {
+            $classes .= ' moonstonet'; // Overview on the top.
+        }
         $style = '';
         if ($this->tcsettings['layoutcolumnorientation'] == 1) {
             $style .= 'width:' . $this->tccolumnwidth . '%;';  // Vertical columns.

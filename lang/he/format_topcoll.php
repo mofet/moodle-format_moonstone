@@ -59,6 +59,10 @@ $string['currentsection'] = 'יחידת־הוראה זו';
 $string['markedthissection'] = 'This section is highlighted as the current section';
 $string['markthissection'] = 'Highlight this section as the current section';
 
+// Reset
+$string['resetgrp'] = 'Reset:';
+$string['resetallgrp'] = 'Reset all:';
+
 // Layout enhancement - Moodle Tracker CONTRIB-3378.
 $string['formatsettings'] = 'הגדרות תצוגת יחידות הוראה'; // CONTRIB-3529
 $string['formatsettingsinformation'] = '<br />To reset the settings of the course format to the defaults, click on the icon to the right.';
@@ -111,6 +115,15 @@ $string['setlayoutcolumnorientation'] = 'עימוד עמודות';
 $string['columnvertical'] = 'אנכי';
 $string['columnhorizontal'] = 'אופקי';
 
+// Theme/Avalon - Moonstone overrides
+$string['setlayouttheme'] = 'עיצוב תצוגה';
+$string['themetopcoll'] = 'עיצוב רגיל';
+$string['thememoonstones'] = 'עיצוב מיוחד - מבוא מוצג לצד רשימת רכיבים';
+$string['thememoonstonet'] = 'עיצוב מיוחד - מבוא מוצג מעל רשימת רכיבים';
+$string['defaultlayouttheme'] = 'תצוגת עיצוב';
+$string['defaultlayouttheme_desc'] = 'תצוגת עיצוב: (1) עיצוב רגיל, (2) עיצוב מיוחד - מבוא מוצג לצד רשימת רכיבים, (3) עיצוב מיוחד - מבוא מוצג מעל רשימת רכיבים ';
+$string['setlayouttheme_help'] = 'תצוגת עיצוב: (1) עיצוב רגיל, (2) עיצוב מיוחד - מבוא מוצג לצד רשימת רכיבים, (3) עיצוב מיוחד - מבוא מוצג מעל רשימת רכיבים ';
+
 // MDL-34917 - implemented in M2.5 but needs to be here to support M2.4- versions.
 $string['maincoursepage'] = 'Main course page';
 
@@ -128,15 +141,15 @@ $string['setlayoutstructure_help']="The layout structure of the course.  You can
 
 'Day' - where each section is presented as a day in ascending day order from the start date of the course.";
 $string['setlayout_help'] = 'Contains the settings to do with the layout of the format within the course.';
-$string['resetlayout_help'] = 'Resets the layout to the default values so it will be the same as a course the first time it is in the Moonstone format.';
-$string['resetalllayout_help'] = 'Resets the layout to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetlayout_help'] = 'Resets the layout to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetalllayout_help'] = 'Resets the layout to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
 // Moodle Tracker CONTRIB-3529.
 $string['setcolour_help'] = 'Contains the settings to do with the colour of the format within the course.';
 $string['settoggleforegroundcolour_help'] = 'Sets the colour of the text on the toggle.';
 $string['settogglebackgroundcolour_help'] = 'Sets the background colour of the toggle.';
 $string['settogglebackgroundhovercolour_help'] = 'Sets the background colour of the toggle when the mouse moves over it.';
-$string['resetcolour_help'] = 'Resets the colours to the default values so it will be the same as a course the first time it is in the Moonstone format.';
-$string['resetallcolour_help'] = 'Resets the colours to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
+$string['resetcolour_help'] = 'Resets the colours to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetallcolour_help'] = 'Resets the colours to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
 // Columns enhancement.
 $string['setlayoutcolumns_help'] = 'How many columns to use.';
 $string['setlayoutcolumnorientation_help'] =
@@ -147,7 +160,7 @@ $string['setlayoutcolumnorientation_help'] =
 // Moodle 2.4 Course format refactoring - MDL-35218.
 $string['numbersections'] = 'מספר יחידת־הוראה';
 $string['ctreset'] = 'איפוס הגדרות תצורת קורס';
-$string['ctreset_help'] = 'Reset to Moonstone defaults.';
+$string['ctreset_help'] = 'Reset to Collapsed Topics defaults.';
 
 // Toggle alignment - CONTRIB-4098.
 $string['settogglealignment'] = 'עימוד סמל תצוגה/הסתרת יחידת־הוראה';
@@ -160,20 +173,35 @@ $string['resetalltogglealignment'] = 'Reset toggle alignments for all Moonstone 
 $string['resettogglealignment_help'] = 'Resets the toggle alignment to the default values so it will be the same as a course the first time it is in the Moonstone format.';
 $string['resetalltogglealignment_help'] = 'Resets the toggle alignment to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
 
+// Icon position - CONTRIB-4470.
+$string['settoggleiconposition'] = 'מיקום צלמיות הצגה/הסתרה';
+$string['settoggleiconposition_help'] = 'States that the icon should be on the left or the right of the toggle text.';
+$string['defaulttoggleiconposition'] = 'Icon position';
+$string['defaulttoggleiconposition_desc'] = 'States if the icon should be on the left or the right of the toggle text.';
+
 // Icon set enhancement.
 $string['settoggleiconset'] = 'Set icon set';
 $string['settoggleiconset_help'] = 'Sets the icon set of the toggle.';
 $string['settoggleallhover'] = 'Set toggle all icon hover';
 $string['settoggleallhover_help'] = 'Sets if the toggle all icons will change when the mouse moves over them.';
 $string['arrow'] = 'Arrow';
+$string['bulb'] = 'Bulb';
+$string['cloud'] = 'Cloud';
+$string['eye'] = 'Eye';
+$string['led'] = 'Light Emitting Diode';
 $string['point'] = 'Point';
 $string['power'] = 'Power';
-$string['resettoggleiconset'] = 'Reset the toggle icon set';
-$string['resetalltoggleiconset'] = 'Reset the toggle icon set for all Moonstone courses';
-$string['resettoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values so it will be the same as a course the first time it is in the Moonstone format.';
-$string['resetalltoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values for all courses so it will be the same as a course the first time it is in the Moonstone format.';
+$string['radio'] = 'Radio';
+$string['smiley'] = 'Smiley';
+$string['square'] = 'Square';
+$string['sunmoon'] = 'Sun / Moon';
+$string['switch'] = 'Switch';
+$string['resettoggleiconset'] = 'Toggle icon set';
+$string['resetalltoggleiconset'] = 'Toggle icon sets';
+$string['resettoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetalltoggleiconset_help'] = 'Resets the toggle icon set and toggle all hover to the default values for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
 
-// Site Administration -> Plugins -> Course formats -> Moonstone or Manage course formats - Settings.
+// Site Administration -> Plugins -> Course formats -> Collapsed Topics or Manage course formats - Settings.
 $string['off'] = 'Off';
 $string['on'] = 'On';
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -255,21 +283,50 @@ $string['defaulttogglealignment_desc'] = "'Left', 'Centre' or 'Right'.";
 $string['defaulttoggleiconset'] = 'Default toggle icon set';
 $string['defaulttoggleiconset_desc'] = "'Arrow' => Arrow icon set.
 
+'Bulb'                 => Bulb icon set.
+
+'Cloud'                => Cloud icon set.
+
+'Eye'                  => Eye icon set.
+
+'Light Emitting Diode' => LED icon set.
+
 'Point' => Point icon set.
 
-'Power' => Power icon set.";
+'Power'                => Power icon set.
+
+'Radio'                => Radio icon set.
+
+'Smiley'               => Smiley icon set.
+
+'Square'               => Square icon set.
+
+'Sun / Moon'           => Sun / Moon icon set.
+
+'Switch'               => Switch icon set.";
 
 $string['defaulttoggleallhover'] = 'Default toggle all icon hovers';
 $string['defaulttoggleallhover_desc'] = "'No' or 'Yes'.";
 
 // Default user preference.
-$string['defaultuserpreference'] = 'What to do with the toggles when the user first accesses the course';
-$string['defaultuserpreference_desc'] = 'States what to do with the toggles when the user first accesses the course.';
+$string['defaultuserpreference'] = 'What to do with the toggles when the user first accesses the course or adds more sections';
+$string['defaultuserpreference_desc'] = 'States what to do with the toggles when the user first accesses the course or the state of additional sections when they are added.';
 
 // Capabilities.
-$string['moonstone:changelayout'] = 'Change or reset the layout';
-$string['moonstone:changecolour'] = 'Change or reset the colour';
-$string['moonstone:changetogglealignment'] = 'Change or reset the toggle alignment';
-$string['moonstone:changetoggleiconset'] = 'Change or reset the toggle icon set';
+$string['topcoll:changelayout'] = 'Change or reset the layout';
+$string['topcoll:changecolour'] = 'Change or reset the colour';
+$string['topcoll:changetogglealignment'] = 'Change or reset the toggle alignment';
+$string['topcoll:changetoggleiconset'] = 'Change or reset the toggle icon set';
+
+// Instructions
+$string['instructions'] = 'Instructions: Clicking on the section name will show / hide the section.';
+$string['displayinstructions'] = 'תצוגת הנחיות הדרכה למורה';
+$string['displayinstructions_help'] = 'States that the instructions should be displayed to the user or not.';
+$string['defaultdisplayinstructions'] = 'Display instructions to users';
+$string['defaultdisplayinstructions_desc'] = "Display instructions to users informing them how to use the toggles.  Can be yes or no.";
+$string['resetdisplayinstructions'] = 'Display instructions';
+$string['resetalldisplayinstructions'] = 'Display instructions';
+$string['resetdisplayinstructions_help'] = 'Resets the display instructions to the default value so it will be the same as a course the first time it is in the Collapsed Topics format.';
+$string['resetalldisplayinstructions_help'] = 'Resets the display instructions to the default value for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
 
 $string['pleaseaddsummary'] = 'לא קיים מבוא ליחידת לימוד זו.<br/><br/>אנא שיקלו להוסיף פסקאת תאור המלווה את רצף הלמידה ביחידת הוראה זו.';

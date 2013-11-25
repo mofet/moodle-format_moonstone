@@ -125,6 +125,7 @@ $string['thememoonstones'] = 'Moonstone - overview on the side';
 $string['thememoonstonet'] = 'Moonstone - overview on the top';
 $string['defaultlayouttheme'] = 'Theme layout';
 $string['defaultlayouttheme_desc'] = 'Theme layouts: (1) Normal TopColl, (2) Moonstone - overview on the side, (3) Moonstone - overview on the top ';
+$string['setlayouttheme_help'] = 'Theme layouts: (1) Normal TopColl, (2) Moonstone - overview on the side, (3) Moonstone - overview on the top ';
 
 // MDL-34917 - implemented in M2.5 but needs to be here to support M2.4- versions.
 $string['maincoursepage'] = 'Main course page';

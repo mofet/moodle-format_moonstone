@@ -958,4 +958,20 @@ class format_topcoll_renderer extends format_section_renderer_base {
     public function set_default_user_preference($defaultpreference) {
         $this->defaultuserpreference = $defaultpreference;
     }
+
+    protected function format_summary_text($section) {
+        global $PAGE;
+
+        $context = context_course::instance($section->course);
+        $summarytext = file_rewrite_pluginfile_urls($section->summary, 'pluginfile.php',
+            $context->id, 'course', 'section', $section->id);
+
+        $options = new stdClass();
+        $options->noclean = true;
+        $options->overflowdiv = true;
+        if (empty($summarytext) && $PAGE->user_is_editing() && has_capability('moodle/course:update', $context)) {
+            $summarytext = get_string('pleaseaddsummary','format_topcoll');
+        }
+        return format_text($summarytext, $section->summaryformat, $options);
+    }
 }

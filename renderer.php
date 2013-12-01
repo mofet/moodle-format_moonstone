@@ -974,4 +974,17 @@ class format_topcoll_renderer extends format_section_renderer_base {
         }
         return format_text($summarytext, $section->summaryformat, $options);
     }
+
+    protected function section_hidden($sectionno) {
+        $o = '';
+        $o.= html_writer::start_tag('li', array('id' => 'section-'.$sectionno, 'class' => 'section main clearfix hidden'));
+        $o.= html_writer::tag('div', '', array('class' => 'left side'));
+        $o.= html_writer::tag('div', '', array('class' => 'right side'));
+        $o.= html_writer::start_tag('div', array('class' => 'content'));
+        $o.= get_string('section')." ($sectionno) ".get_string('notavailable');
+        $o.= html_writer::end_tag('div');
+        $o.= html_writer::end_tag('li');
+        return $o;
+    }
+
 }

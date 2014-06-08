@@ -118,6 +118,14 @@ $string['setlayoutcolumnorientation'] = 'Set column orientation';
 $string['columnvertical'] = 'Vertical';
 $string['columnhorizontal'] = 'Horizontal';
 
+// Theme/Avalon - Moonstone overrides
+$string['setlayouttheme'] = 'Theme layout';
+$string['themetopcoll'] = 'Topcoll normal layout';
+$string['thememoonstones'] = 'Moonstone - overview on the side';
+$string['thememoonstonet'] = 'Moonstone - overview on the top';
+$string['defaultlayouttheme'] = 'Theme layout';
+$string['defaultlayouttheme_desc'] = 'Theme layouts: (1) Normal TopColl, (2) Moonstone - overview on the side, (3) Moonstone - overview on the top ';
+
 // MDL-34917 - implemented in M2.5 but needs to be here to support M2.4- versions.
 $string['maincoursepage'] = 'Main course page';
 
@@ -322,3 +330,5 @@ $string['resetdisplayinstructions'] = 'Display instructions';
 $string['resetalldisplayinstructions'] = 'Display instructions';
 $string['resetdisplayinstructions_help'] = 'Resets the display instructions to the default value so it will be the same as a course the first time it is in the Collapsed Topics format.';
 $string['resetalldisplayinstructions_help'] = 'Resets the display instructions to the default value for all courses so it will be the same as a course the first time it is in the Collapsed Topics format.';
+
+$string['pleaseaddsummary'] = 'No summary was found for this topic.<br/><br/>Please consider adding a summary, to make this topic more clear for the students.';

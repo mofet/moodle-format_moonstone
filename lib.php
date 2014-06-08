@@ -112,7 +112,7 @@ class format_topcoll extends format_base {
         // We can't add a node without any text.
         if ((string) $thesection->name !== '') {
             $o .= format_string($thesection->name, true, array('context' => $coursecontext));
-            if (($thesection->section != 0) && (($tcsettings['layoutstructure'] == 2) || 
+            if (($thesection->section != 0) && (($tcsettings['layoutstructure'] == 2) ||
                 ($tcsettings['layoutstructure'] == 3) || ($tcsettings['layoutstructure'] == 5))) {
                 $o .= ' ';
                 if ($additional == true) { // br tags break backups!
@@ -338,6 +338,10 @@ class format_topcoll extends format_base {
                     'default' => get_config('format_topcoll', 'defaultlayoutcolumnorientation'),
                     'type' => PARAM_INT,
                 ),
+                'layouttheme' => array(
+                    'default' => get_config('format_topcoll', 'defaultlayouttheme'),
+                    'type' => PARAM_INT,
+                ),
                 'togglealignment' => array(
                     'default' => get_config('format_topcoll', 'defaulttogglealignment'),
                     'type' => PARAM_INT,
@@ -483,6 +487,17 @@ class format_topcoll extends format_base {
                               2 => new lang_string('columnhorizontal', 'format_topcoll')) // Default.
                     )
                 );
+                $courseformatoptionsedit['layouttheme'] = array(
+                    'label' => new lang_string('setlayouttheme', 'format_topcoll'),
+                    'help' => 'setlayouttheme',
+                    'help_component' => 'format_topcoll',
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(1 => new lang_string('themetopcoll', 'format_topcoll'),
+                              2 => new lang_string('thememoonstones', 'format_topcoll'), // Default.
+                              3 => new lang_string('thememoonstonet', 'format_topcoll'))
+                    )
+                );
                 $courseformatoptionsedit['toggleiconposition'] = array(
                     'label' => new lang_string('settoggleiconposition', 'format_topcoll'),
                     'help' => 'settoggleiconposition',
@@ -502,6 +517,8 @@ class format_topcoll extends format_base {
                     array('label' => get_config('format_topcoll', 'defaultlayoutcolumns'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['layoutcolumnorientation'] =
                     array('label' => get_config('format_topcoll', 'defaultlayoutcolumnorientation'), 'element_type' => 'hidden');
+                $courseformatoptionsedit['layouttheme'] =
+                    array('label' => get_config('format_topcoll', 'defualtlayouttheme'), 'element_type' => 'hidden');
                 $courseformatoptionsedit['toggleiconposition'] =
                     array('label' => get_config('format_topcoll', 'defaulttoggleiconposition'), 'element_type' => 'hidden');
             }
@@ -727,19 +744,19 @@ class format_topcoll extends format_base {
     /**
      * Validates the colour that was entered by the user.
      * Borrowed from 'admin_setting_configcolourpicker' in '/lib/adminlib.php'.
-     * 
+     *
      * I'm not completely happy with this solution as would rather embed in the colour
      * picker code in the form, however I find this area rather fraut and I hear that
      * Dan Poltawski (via MDL-42270) will be re-writing the forms lib so hopefully more
      * developer friendly.
-     * 
+     *
      * Note: Colour names removed, but might consider putting them back in if asked, but
      *       at the moment that would require quite a few changes and coping with existing
      *       settings.  Either convert the names to hex or allow them as valid values and
      *       fix the colour picker code and the CSS code in 'format.php' for the setting.
-     * 
+     *
      * Colour name to hex on: http://www.w3schools.com/cssref/css_colornames.asp.
-     * 
+     *
      * @param string $data the colour string to validate.
      * @return true|false
      */
@@ -973,6 +990,7 @@ class format_topcoll extends format_base {
             $updatedata['layoutstructure'] = get_config('format_topcoll', 'defaultlayoutstructure');
             $updatedata['layoutcolumns'] = get_config('format_topcoll', 'defaultlayoutcolumns');
             $updatedata['layoutcolumnorientation'] = get_config('format_topcoll', 'defaultlayoutcolumnorientation');
+            $updatedata['layouttheme'] = get_config('format_topcoll', 'defaultlayouttheme');
             $updatedata['toggleiconposition'] = get_config('format_topcoll', 'defaulttoggleiconposition');
             $updatelayout = true;
         }

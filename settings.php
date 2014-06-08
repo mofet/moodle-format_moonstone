@@ -55,7 +55,7 @@ if ($ADMIN->fulltree) {
     $name = 'format_topcoll/defaultdisplayinstructions';
     $title = get_string('defaultdisplayinstructions', 'format_topcoll');
     $description = get_string('defaultdisplayinstructions_desc', 'format_topcoll');
-    $default = 2;
+    $default = 1;
     $choices = array(
         1 => new lang_string('no'),   // No.
         2 => new lang_string('yes')   // Yes.
@@ -77,7 +77,7 @@ if ($ADMIN->fulltree) {
     $name = 'format_topcoll/defaultlayoutelement';
     $title = get_string('defaultlayoutelement', 'format_topcoll');
     $description = get_string('defaultlayoutelement_descpositive', 'format_topcoll');
-    $default = 1;
+    $default = 5;
     $choices = array( // In insertion order and not numeric for sorting purposes.
         1 => new lang_string('setlayout_all', 'format_topcoll'),                             // Toggle word, toggle section x and section number - default.
         3 => new lang_string('setlayout_toggle_word_section_x', 'format_topcoll'),           // Toggle word and toggle section x.
@@ -133,6 +133,18 @@ if ($ADMIN->fulltree) {
     $choices = array(
         1 => new lang_string('columnvertical', 'format_topcoll'),
         2 => new lang_string('columnhorizontal', 'format_topcoll') // Default.
+    );
+    $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
+
+    // Default themelayout - 1 = topcoll , 2 = moonstone vertical, 3 = moonstone horizontal.
+    $name = 'format_topcoll/defaultlayouttheme';
+    $title = get_string('defaultlayouttheme', 'format_topcoll');
+    $description = get_string('defaultlayouttheme_desc', 'format_topcoll');
+    $default = 2;
+    $choices = array(
+        1 => new lang_string('themetopcoll', 'format_topcoll'),
+        2 => new lang_string('thememoonstones', 'format_topcoll'), // Default.
+        3 => new lang_string('thememoonstonet', 'format_topcoll')
     );
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
 

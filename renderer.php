@@ -418,7 +418,12 @@ class format_topcoll_renderer extends format_section_renderer_base {
             }
 
             $o .= html_writer::start_tag('div', array('class' => 'summary'));
-            $o .= $this->format_summary_text($section);
+            if ($this->format_summary_text($section) == '' AND $PAGE->user_is_editing()) {
+                $o .= get_string('pleaseaddsummary', 'format_topcoll');
+            } else {
+                $o .= $this->format_summary_text($section);
+            }
+
 
             $o .= html_writer::end_tag('div');
 
